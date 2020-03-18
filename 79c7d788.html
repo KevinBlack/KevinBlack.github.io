@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[toc] 1.页面中定义一个定时器，在哪个阶段清除？答案：在 beforeDestroy 中销毁定时器。① 为什么销毁它：在页面 a 中写了一个定时器，比如每隔一秒钟打印一次 1，当我点击按钮进入页面 b 的时候，会发现定时器依然在执行，这是非常消耗性能的。② 解决方案A：12345678mounted()&amp;#123; this.timer = setInterval(()=&amp;gt;&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue考点">
+<meta property="og:url" content="KevinBlack.github.io/79c7d788.html">
+<meta property="og:site_name" content="♠♥♣♦">
+<meta property="og:description" content="[toc] 1.页面中定义一个定时器，在哪个阶段清除？答案：在 beforeDestroy 中销毁定时器。① 为什么销毁它：在页面 a 中写了一个定时器，比如每隔一秒钟打印一次 1，当我点击按钮进入页面 b 的时候，会发现定时器依然在执行，这是非常消耗性能的。② 解决方案A：12345678mounted()&amp;#123; this.timer = setInterval(()=&amp;gt;&amp;#123;">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-175757@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-175757@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-175950@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180230@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180252@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180317@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180355@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180412@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180430@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180459@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180522@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180538@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180600@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180647@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180708@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-180720@2x.png">
+<meta property="og:updated_time" content="2020-03-18T10:12:31.922Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue考点">
+<meta name="twitter:description" content="[toc] 1.页面中定义一个定时器，在哪个阶段清除？答案：在 beforeDestroy 中销毁定时器。① 为什么销毁它：在页面 a 中写了一个定时器，比如每隔一秒钟打印一次 1，当我点击按钮进入页面 b 的时候，会发现定时器依然在执行，这是非常消耗性能的。② 解决方案A：12345678mounted()&amp;#123; this.timer = setInterval(()=&amp;gt;&amp;#123;">
+<meta name="twitter:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-175757@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="KevinBlack.github.io/79c7d788.html"/>
+
+
+
+
+
+  <title>Vue考点 | ♠♥♣♦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">♠♥♣♦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="KevinBlack.github.io/79c7d788.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="万俟逍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="♠♥♣♦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue考点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-18T00:00:00+08:00">
+                2020-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/" itemprop="url" rel="index">
+                    <span itemprop="name">前端知识</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/笔记/爱前端/" itemprop="url" rel="index">
+                    <span itemprop="name">爱前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  9,215
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  39
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[toc]</p>
+<h5 id="1-页面中定义一个定时器，在哪个阶段清除？"><a href="#1-页面中定义一个定时器，在哪个阶段清除？" class="headerlink" title="1.页面中定义一个定时器，在哪个阶段清除？"></a>1.页面中定义一个定时器，在哪个阶段清除？</h5><p>答案：在 beforeDestroy 中销毁定时器。<br>① 为什么销毁它：<br>在页面 a 中写了一个定时器，比如每隔一秒钟打印一次 1，当我点击按钮进入页面 b 的时候，会发现定时器依然在执行，这是非常消耗性能的。<br>② 解决方案<br>A：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line"> this.timer = setInterval(()=&gt;&#123;</span><br><span class="line">    console.log(1)</span><br><span class="line"> &#125;,1000)</span><br><span class="line">&#125;,</span><br><span class="line">beforeDestroy()&#123;</span><br><span class="line"> clearInterval(this.timer)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方案A有两点不好的地方，引用尤大的话来说就是：<br>它需要在这个组件实例中保存这个 timer，如果可以的话最好只有生命周期钩子可以访问到它。这并不算严重的问题，但是它可以被视为杂物。<br>我们的建立代码独立于我们的清理代码，这使得我们比较难于程序化的清理我们建立的所有东西。  </p>
+<p>方案B（推荐）：该方法是通过$once 这个事件侦听器在定义完定时器之后的位置来清除定时器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line"> const timer = setInterval(()=&gt;&#123;</span><br><span class="line">    console.log(1)</span><br><span class="line"> &#125;,1000)</span><br><span class="line"> this.$once(&apos;hook:beforeDestroy&apos;,()=&gt;&#123;</span><br><span class="line">  clearInterval(timer)</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>官网参考链接:<a href="https://cn.vuejs.org/v2/guide/components-edge-cases.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/components-edge-cases.html</a><br><img src="img/aiqianduan/WX20200318-175757@2x.png" alt="1584101009846.jpg"></p>
+<h5 id="2-父组件如何获取子组件的数据，子组件如何获取父组件的数据，父子组件如何传值？"><a href="#2-父组件如何获取子组件的数据，子组件如何获取父组件的数据，父子组件如何传值？" class="headerlink" title="2.父组件如何获取子组件的数据，子组件如何获取父组件的数据，父子组件如何传值？"></a>2.父组件如何获取子组件的数据，子组件如何获取父组件的数据，父子组件如何传值？</h5><p>① 先说，父组件如何主动获取子组件的数据？</p>
+<p>方案 1：$children  </p>
+<p>$children 用来访问子组件实例，要知道一个组件的子组件可能是不唯一的，所以它的返回值是数组。</p>
+<p>现在，我们定义 Header，HelloWorld 两个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;index&quot;&gt;</span><br><span class="line">    &lt;Header&gt;&lt;/Header&gt;</span><br><span class="line">    &lt;HelloWorld :message=&quot;message&quot;&gt;&lt;/HelloWorld&gt;</span><br><span class="line">    &lt;button @click=&quot;goPro&quot;&gt;跳转&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">mounted()&#123;</span><br><span class="line"> console.log(this.$children)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="img/aiqianduan/WX20200318-175757@2x.png" alt="1584101171037.jpg"><br>打印的是一个数组，可以用 foreach 分别得到所需要的的数据</p>
+<p>缺点：<br>无法确定子组件的顺序，也不是响应式的。如果你确切的知道要访问子组件建议使用$refs。</p>
+<p>方案 2 ：$refs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;HelloWorld ref=&quot;hello&quot; :message=&quot;message&quot;&gt;&lt;/HelloWorld&gt;</span><br></pre></td></tr></table></figure></p>
+<p>调用 helloworld 子组件的时候直接定义一个 ref，这样就可以通过 this.$refs 获取所需要的的数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.$refs.hello.属性</span><br><span class="line">this.$refs.hello.方法</span><br></pre></td></tr></table></figure></p>
+<p>② 子组件如何主动获取父组件中的数据？</p>
+<p>通过 ：$parent</p>
+<p>用来访问父组件实例，通常父组件都是唯一确定的，跟children类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.$parent.属性</span><br><span class="line">this.$parent.方法</span><br></pre></td></tr></table></figure></p>
+<p>父子组件通信除了以上三种，还有 props 和 attrs</p>
+<p>③ <strong>inheritAttrs</strong></p>
+<p>这是@2.4 新增的属性和接口。inheritAttrs 属性控制子组件 html 属性上是否显示父组件的提供的属性。<br>如果我们将父组件 Index 中的属性 desc、keysword、message 三个数据传递到子组件 HelloWorld 中的话，如下<br>父组件 Index 部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;HelloWorld ref=&quot;hello&quot; :desc=&quot;desc&quot; :keysword=&quot;keysword&quot; :message=&quot;message&quot;&gt;&lt;/HelloWorld&gt;</span><br></pre></td></tr></table></figure></p>
+<p>子组件：HelloWorld，props 中只接受了 message<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">props: &#123;</span><br><span class="line">    message: String</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>实际情况，我们只需要 message，那其他两个属性则会被当做普通的 html 元素插在子组件的根元素上。<br>如图<br><img src="img/aiqianduan/WX20200318-175950@2x.png" alt="1584101249511.jpg"><br>这样做会使组件预期功能变得模糊不清，这个时候，在子组件中写入，inheritAttrs：false ，这些没用到的属性便会被去掉，true 的话，就会显示。</p>
+<p>如果，父组件中没被需要的属性，跟子组件本来的属性冲突的时候，则依据父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;HelloWorld ref=&quot;hello&quot; type=&quot;text&quot; :message=&quot;message&quot;&gt;&lt;/HelloWorld&gt;</span><br></pre></td></tr></table></figure></p>
+<p>子组件：HelloWorld<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;input type=&quot;number&quot;&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个时候父组件中 type=“text”，而子组件中 type=”number”,而实际中最后显示的是 type=”text”，这并不是我们想要的，所以只要设置：inheritAttrs：false，type 便会成为 number<br><img src="img/aiqianduan/WX20200318-180230@2x.png" alt="1584101325109.jpg"><br>上述这些没被用到的属性，如何被获取呢？这就用到了$attrs</p>
+<p>③ <strong>$attrs</strong></p>
+<p>作用：可以获取到没有使用的注册属性，如果需要，我们在这也可以往下继续传递。<br>就上上述没有被用到的 desc 和 keysword 就能通过$attrs 获取到。</p>
+<p>通过$attrs 的这个特性可以父组件传递到孙组件，免除父组件传递到子组件，再从子组件传递到孙组件的麻烦</p>
+<p>代码如下 父组件 Index 部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;index&quot;&gt;</span><br><span class="line">  &lt;HelloWorld ref=&quot;hello&quot; :desc=&quot;desc&quot; :keysword=&quot;keysword&quot; :message=&quot;message&quot;&gt;&lt;/HelloWorld&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> data()&#123;</span><br><span class="line">  return&#123;</span><br><span class="line">   message:&apos;首页&apos;,</span><br><span class="line">   desc:&apos;首页描述&apos;,</span><br><span class="line">   keysword:&apos;我是关键词key&apos;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>子组件 HelloWorld 部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;hello&quot;&gt;</span><br><span class="line">   &lt;sunzi v-bind=&quot;$attrs&quot;&gt;&lt;/sunzi&gt;</span><br><span class="line">   &lt;button @click=&quot;aa&quot;&gt;获取父组件的数据&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>孙子组件 sunzi 部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;header&quot;&gt;</span><br><span class="line">    &#123;&#123;$attrs&#125;&#125;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出通过 v-bind=”$attrs”将数据传到孙组件中</p>
+<p>除了以上，provide / inject 也适用于 隔代组件通信，尤其是获取祖先组件的数据，非常方便。<br><img src="img/aiqianduan/WX20200318-180252@2x.png" alt="1584101475501.jpg"><br>简单的说，当组件的引入层次过多，我们的子孙组件想要获取祖先组件的资源，那么怎么办呢，总不能一直取父级往上吧，而且这样代码结构容易混乱。这个就是 provide / inject 要干的事情。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">&lt;childOne&gt;&lt;/childOne&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import childOne from &apos;../components/test/ChildOne&apos;</span><br><span class="line">  export default &#123;</span><br><span class="line">    name: &quot;Parent&quot;,</span><br><span class="line">    provide: &#123;</span><br><span class="line">      for: &quot;demo&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">      childOne</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这里我们在父组件中 provide for 这个变量，然后直接设置三个组件（childOne、childTwo 、childThird）并且一层层不断内嵌其中， 而在最深层的 childThird 组件中我们可以通过 inject 获取 for 这个变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123;&#123;demo&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    name: &quot;&quot;,</span><br><span class="line">    inject: [&apos;for&apos;],</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        demo: this.for</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="3-自定义指令如何定义，它的生命周期是什么？"><a href="#3-自定义指令如何定义，它的生命周期是什么？" class="headerlink" title="3.自定义指令如何定义，它的生命周期是什么？"></a>3.自定义指令如何定义，它的生命周期是什么？</h5><p>通过 Vue.directive() 来定义全局指令</p>
+<p>有几个可用的钩子（生命周期）, 每个钩子可以选择一些参数. 钩子如下:</p>
+<ul>
+<li>bind: 一旦指令附加到元素时触发</li>
+<li>inserted: 一旦元素被添加到父元素时触发</li>
+<li>update: 每当元素本身更新(但是子元素还未更新)时触发</li>
+<li>componentUpdate: 每当组件和子组件被更新时触发</li>
+<li>unbind: 一旦指令被移除时触发。</li>
+</ul>
+<p>bind 和 update 也许是这五个里面最有用的两个钩子了</p>
+<p>每个钩子都有 el, binding, 和 vnode 参数可用.</p>
+<p>update 和 componentUpdated 钩子还暴露了 oldVnode, 以区分传递的旧值和较新的值.</p>
+<p>el 就是所绑定的元素.</p>
+<p>binding 是一个保护传入钩子的参数的对象. 有很多可用的参数, 包括 name, value, oldValue, expression, arguments, arg 及修饰语.</p>
+<p>vnode 有一个更不寻常的用例, 它可用于你需要直接引用到虚拟 DOM 中的节点.</p>
+<p>binding 和 vnode 都应该被视为只读.</p>
+<p>现在，自定义一个指令，添加一些样式，表示定位的距离<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&apos;tack&apos;,&#123;</span><br><span class="line"> bind(el,binding)&#123;</span><br><span class="line">  el.style.position=&apos;fixed&apos;;</span><br><span class="line">  el.style.top=binding.value + &apos;px&apos;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;div class=&quot;header&quot; v-tack=&quot;10&quot; &gt;我是header&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>假设我们想要区分从顶部或者左侧偏移 70px, 我们可以通过传递一个参数来做到这一点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&apos;tack&apos;, &#123;</span><br><span class="line"> bind(el, binding, vnode) &#123;</span><br><span class="line">  el.style.position = &apos;fixed&apos;;</span><br><span class="line">  const s = (binding.arg === &apos;left&apos; ? &apos;left&apos; : &apos;top&apos;);</span><br><span class="line">  el.style[s] = binding.value + &apos;px&apos;;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>也可以同时传入不止一个值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&apos;tack&apos;, &#123;</span><br><span class="line"> bind(el, binding, vnode) &#123;</span><br><span class="line"> el.style.position = &apos;fixed&apos;;</span><br><span class="line"> el.style.top = binding.value.top + &apos;px&apos;;</span><br><span class="line"> el.style.left = binding.value.left + &apos;px&apos;;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;div class=&quot;header&quot; v-tack=&quot;&#123;left:’20’,top:’20’&#125;&quot; &gt;我是header&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="4、vue-生命周期，各个阶段简单讲一下？"><a href="#4、vue-生命周期，各个阶段简单讲一下？" class="headerlink" title="4、vue 生命周期，各个阶段简单讲一下？"></a>4、vue 生命周期，各个阶段简单讲一下？</h5><ul>
+<li>breforeCreate（）：实例创建前，这个阶段实例的 data 和 methods 是读不到的。</li>
+<li>created（）：实例创建后，这个阶段已经完成数据观测，属性和方法的运算，watch/event 事件回调，mount 挂载阶段还没有开始。$el 属性目前不可见，数据并没有在 DOM 元素上进行渲染。<br>created 完成之后，进行 template 编译等操作，将 template 编译为 render 函数，有了 render 函数后才会执行 beforeMount（）</li>
+<li>beforeMount（）：在挂载开始之前被调用：相关的 render 函数首次被调用</li>
+<li>mounted（）：挂载之后调用，el 选项的 DOM 节点被新创建的 vm.$el 替换，并挂载到实例上去之后调用此生命周期函数，此时实例的数据在 DOM 节点上进行渲染</li>
+</ul>
+<p>后续的钩子函数执行的过程都是需要外部的触发才会执行</p>
+<p>有数据的变化，会调用 beforeUpdate，然后经过 Virtual Dom，最后 updated 更新完毕，当组件被销毁的时候，会调用 beforeDestory，以及 destoryed。</p>
+<h5 id="5、watch-和-computed-的区别？"><a href="#5、watch-和-computed-的区别？" class="headerlink" title="5、watch 和 computed 的区别？"></a>5、watch 和 computed 的区别？</h5><p><strong>computed</strong>：</p>
+<p>① 有缓存机制；② 不能接受参数；③ 可以依赖其他 computed，甚至是其他组件的 data；④ 不能与 data 中的属性重复</p>
+<p><strong>watch</strong>：</p>
+<p>① 可接受两个参数；② 监听时可触发一个回调，并做一些事情；③ 监听的属性必须是存在的；④ 允许异步<br>watch 配置：handler、deep（是否深度）、immeditate （是否立即执行）</p>
+<p>总结：</p>
+<p>当有一些数据需要随着另外一些数据变化时，建议使用 computed</p>
+<p>当有一个通用的响应数据变化的时候，要执行一些业务逻辑或异步操作的时候建议使用 watch</p>
+<h5 id="6、请说一下-computed-中的-getter-和-setter"><a href="#6、请说一下-computed-中的-getter-和-setter" class="headerlink" title="6、请说一下 computed 中的 getter 和 setter"></a>6、请说一下 computed 中的 getter 和 setter</h5><p>① computed 中可以分成 getter（读取） 和 setter（设值）</p>
+<p>② 一般情况下是没有 setter 的，computed 预设只有 getter ，也就是只能读取，不能改变设值。</p>
+<p>一、默认只有 getter 的写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;demo&quot;&gt;&#123;&#123; fullName &#125;&#125;&lt;/div&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#demo&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    firstName: &apos;Foo&apos;,</span><br><span class="line">    lastName: &apos;Bar&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    fullName: function () &#123;</span><br><span class="line">      return this.firstName + &apos; &apos; + this.lastName</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">//其实fullName的完整写法应该是如下：</span><br><span class="line">fullName: &#123;</span><br><span class="line"> get()&#123;</span><br><span class="line">   return this.firstName + &apos; &apos; + this.lastName</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意：不是说我们更改了 getter 里使用的变量，就会触发 computed 的更新，前提是 computed 里的值必须要在模板里使用才行。如果将去掉，get（）方法是不会触发的。</p>
+<p>二、setter 的写法，可以设值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">   &lt;div id=&quot;demo&quot;&gt;</span><br><span class="line">       &lt;p&gt; &#123;&#123; fullName &#125;&#125; &lt;/p&gt;</span><br><span class="line">       &lt;input type=&quot;text&quot; v-model=&quot;fullName&quot;&gt;</span><br><span class="line">       &lt;input type=&quot;text&quot; v-model=&quot;firstName&quot;&gt;</span><br><span class="line">       &lt;input type=&quot;text&quot; v-model=&quot;lastName&quot;&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">  el: &apos;#demo&apos;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    firstName: &apos;zhang&apos;,</span><br><span class="line">    lastName: &apos;san&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    fullName: &#123;</span><br><span class="line">      //getter 方法</span><br><span class="line">     get()&#123;</span><br><span class="line">       console.log(&apos;computed getter...&apos;)</span><br><span class="line">        return this.firstName + &apos; &apos; + this.lastName</span><br><span class="line">       &#125;，</span><br><span class="line">   //setter 方法</span><br><span class="line">    set(newValue)&#123;</span><br><span class="line">      console.log(&apos;computed setter...&apos;)</span><br><span class="line">      var names = newValue.split(&apos; &apos;)</span><br><span class="line">      this.firstName = names[0]</span><br><span class="line">      this.lastName = names[names.length - 1]</span><br><span class="line">      return this.firstName + &apos; &apos; + this.lastName</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>在这里，我们修改 fullName 的值，就会触发 setter，同时也会触发 getter。</p>
+<p>注意：并不是触发了 setter 也就会触发 getter，他们两个是相互独立的。我们这里修改了 fullName 会触发 getter 是因为 setter 函数里有改变 firstName 和 lastName 值的代码，这两个值改变了，fullName 依赖于这两个值，所以便会自动改变。</p>
+<h5 id="7、导航钩子有哪几种，分别如何用，如何将数据传入下一个点击的路由页面？"><a href="#7、导航钩子有哪几种，分别如何用，如何将数据传入下一个点击的路由页面？" class="headerlink" title="7、导航钩子有哪几种，分别如何用，如何将数据传入下一个点击的路由页面？"></a>7、导航钩子有哪几种，分别如何用，如何将数据传入下一个点击的路由页面？</h5><p>① 全局导航守卫</p>
+<p>前置守卫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">  // do someting</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>后置钩子（没有 next 参数）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.afterEach((to, from) =&gt; &#123;</span><br><span class="line">  // do someting</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>② 路由独享守卫<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cont router = new  VueRouter(&#123;</span><br><span class="line"> routes: [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/file&apos;,</span><br><span class="line">    component: File,</span><br><span class="line">    beforeEnter: (to, from ,next) =&gt; &#123;</span><br><span class="line">       // do someting</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>顺便看一下路由里面的参数配置：<br><img src="img/aiqianduan/WX20200318-180317@2x.png" alt="1584102761161.jpg"><br>③ 组件内的导航钩子</p>
+<p>组件内的导航钩子主要有这三种：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave。他们是直接在路由组件内部直接进行定义的</p>
+<p><strong>beforeRouteEnter</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line"> return&#123;</span><br><span class="line">   pro:&apos;产品&apos;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;,</span><br><span class="line">beforeRouteEnter:(to,from,next)=&gt;&#123;</span><br><span class="line">  console.log(to)</span><br><span class="line">  next(vm =&gt; &#123;</span><br><span class="line">   console.log(vm.pro)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注：beforeRouteEnter 不能获取组件实例 this，因为当守卫执行前，组件实例被没有被创建出来，我们可以通过给 next 传入一个回调来访问组件实例。在导航被确认时，会执行这个回调，这时就可以访问组件实例了</p>
+<p>仅仅是 beforRouteEnter 支持给 next 传递回调，其他两个并不支持，因为剩下两个钩子可以正常获取组件实例 this</p>
+<p>如何通过路由将数据传入下一个跳转的页面呢？</p>
+<p>答：params 和 query</p>
+<p><strong>params</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 传参</span><br><span class="line">this.$router.push(&#123;</span><br><span class="line"> name:&quot;detail&quot;,</span><br><span class="line"> params:&#123;</span><br><span class="line">   name:&apos;xiaoming&apos;,</span><br><span class="line"> &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 接受</span><br><span class="line">this.$route.params.name</span><br></pre></td></tr></table></figure></p>
+<p><strong>query</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 传参</span><br><span class="line">this.$router.push(&#123;</span><br><span class="line">  path:&apos;/detail&apos;,</span><br><span class="line">  query:&#123;</span><br><span class="line">    name:&quot;xiaoming&quot;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">// 接受 </span><br><span class="line">// 接收参数是this.$route</span><br><span class="line">this.$route.query.id</span><br></pre></td></tr></table></figure></p>
+<p>那 query 和 params 什么区别呢？</p>
+<p>① params 只能用 name 来引入路由，query 既可以用 name 又可以用 path（通常用 path）</p>
+<p>② params 类似于 post 方法，参数不会再地址栏中显示<br><img src="img/aiqianduan/WX20200318-180355@2x.png" alt="1584103255885.jpg"><br>query 类似于 get 请求，页面跳转的时候，可以在地址栏看到请求参数<br><img src="img/aiqianduan/WX20200318-180412@2x.png" alt="1584103320555.jpg"><br>那刚才提到的 this.router和this.route有何区别？</p>
+<p>先打印出来看一下<br><img src="img/aiqianduan/WX20200318-180430@2x.png" alt="1584103429182.jpg"><br>router.push 方法</p>
+<p>$route 为当前 router 跳转对象，里面可以获取 name、path、query、params 等</p>
+<h5 id="8、es6-的特有的类型，-常用的操作数组的方法都有哪些？"><a href="#8、es6-的特有的类型，-常用的操作数组的方法都有哪些？" class="headerlink" title="8、es6 的特有的类型， 常用的操作数组的方法都有哪些？"></a>8、es6 的特有的类型， 常用的操作数组的方法都有哪些？</h5><p>es6 新增的主要的特性：</p>
+<p>① let const 两者都有块级作用域</p>
+<p>② 箭头函数</p>
+<p>③ 模板字符串</p>
+<p>④ 解构赋值</p>
+<p>⑤ for of 循环</p>
+<p>⑥ import 、export 导入导出</p>
+<p>⑦ set 数据结构</p>
+<p>⑧ …展开运算符</p>
+<p>⑨ 修饰器 @</p>
+<p>⑩ class 类继承</p>
+<p>⑪ async、await</p>
+<p>⑫ promise</p>
+<p>⑬ Symbol</p>
+<p>⑭ Proxy 代理</p>
+<p>操作数组常用的方法：</p>
+<p><strong>es5</strong>：concat 、join 、push、pop、shift、unshift、slice、splice、substring 和 substr 、sort、 reverse、indexOf 和 lastIndexOf 、every、some、filter、map、forEach、reduce</p>
+<p><strong>es6</strong>：find、findIndex、fill、copyWithin、Array.from、Array.of、entries、values、key、includes</p>
+<h5 id="9、vue-双向绑定原理？"><a href="#9、vue-双向绑定原理？" class="headerlink" title="9、vue 双向绑定原理？"></a>9、vue 双向绑定原理？</h5><p>通过 Object.defineProperty()来劫持各个属性的 setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调</p>
+<h5 id="10、vue-router-的实现原理，history-和-hash-模式有什么区别？"><a href="#10、vue-router-的实现原理，history-和-hash-模式有什么区别？" class="headerlink" title="10、vue-router 的实现原理，history 和 hash 模式有什么区别？"></a>10、vue-router 的实现原理，history 和 hash 模式有什么区别？</h5><p>vue-router 有两种模式，hash 模式和 history 模式</p>
+<p><strong>hash 模式</strong></p>
+<p>url 中带有#的便是 hash 模式，#后面是 hash 值，它的变化会触发 hashchange 这个事件。</p>
+<p>通过这个事件我们就可以知道 hash 值发生了哪些变化。然后我们便可以监听 hashchange 来实现更新页面部分内容的操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">window.onhashchange = function(event)&#123;</span><br><span class="line">  console.log(event.oldURL, event.newURL);</span><br><span class="line">  let hash = location.hash.slice(1);</span><br><span class="line">  document.body.style.color = hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>另外，hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。</p>
+<p><strong>history 模式</strong></p>
+<p>history api 可以分为两大部分，切换和修改</p>
+<p>① 切换历史状态</p>
+<p>包括 back,forward,go 三个方法，对应浏览器的前进，后退，跳转操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">history.go(-2);//后退两次</span><br><span class="line">history.go(2);//前进两次</span><br><span class="line">history.back(); //后退</span><br><span class="line">hsitory.forward(); //前进</span><br></pre></td></tr></table></figure></p>
+<p>② 修改历史状态</p>
+<p>包括了 pushState,replaceState 两个方法,这两个方法接收三个参数:stateObj,title,url<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">history.pushState(&#123;color:&apos;red&apos;&#125;, &apos;red&apos;, &apos;red&apos;&#125;)</span><br><span class="line">window.onpopstate = function(event)&#123;</span><br><span class="line">  console.log(event.state)</span><br><span class="line">  if(event.state &amp;&amp; event.state.color === &apos;red&apos;)&#123;</span><br><span class="line">    document.body.style.color = &apos;red&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">history.back();</span><br><span class="line">history.forward();</span><br></pre></td></tr></table></figure></p>
+<p>通过 pushstate 把页面的状态保存在 state 对象中，当页面的 url 再变回这个 url 时，可以通过 event.state 取到这个 state 对象，从而可以对页面状态进行还原，这里的页面状态就是页面字体颜色，其实滚动条的位置，阅读进度，组件的开关的这些页面状态都可以存储到 state 的里面。</p>
+<p>history 缺点：</p>
+<p>1：hash 模式下，仅 hash 符号之前的内容会被包含在请求中，如<a href="http://www.a12c.com,因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回" target="_blank" rel="noopener">http://www.a12c.com,因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回</a> 404 错误。</p>
+<p>2：history 模式下，前端的 URL 必须和实际向后端发起请求的 URL 一致。如<a href="http://www.a12c.com/book/a。如果后端缺少对/book/a" target="_blank" rel="noopener">http://www.a12c.com/book/a。如果后端缺少对/book/a</a> 的路由处理，将返回 404 错误</p>
+<h5 id="11、怎么在vue中点击别的区域输入框不会失去焦点？"><a href="#11、怎么在vue中点击别的区域输入框不会失去焦点？" class="headerlink" title="11、怎么在vue中点击别的区域输入框不会失去焦点？"></a>11、怎么在vue中点击别的区域输入框不会失去焦点？</h5><p>答：阻止事件的默认行为</p>
+<p>具体操作：监听你想点击后不会丢失 input 焦点的那个元素的 mousedown 事件，回调里面调用 event.preventDefault()，会阻止使当前焦点丢失这一默认行为。</p>
+<h5 id="12、vue中data的属性可以和methods中的方法同名吗？为什么？"><a href="#12、vue中data的属性可以和methods中的方法同名吗？为什么？" class="headerlink" title="12、vue中data的属性可以和methods中的方法同名吗？为什么？"></a>12、vue中data的属性可以和methods中的方法同名吗？为什么？</h5><p>答：不可以</p>
+<p>因为，Vue会把methods和data的东西，全部代理到Vue生成的对象中，会产生覆盖所以最好不要同名</p>
+<h5 id="13、怎么给vue定义全局的方法？"><a href="#13、怎么给vue定义全局的方法？" class="headerlink" title="13、怎么给vue定义全局的方法？"></a>13、怎么给vue定义全局的方法？</h5><p>Vue.prototype.方法名称</p>
+<h5 id="14、Vue-2-0-不再支持在-v-html-中使用过滤器怎么办？"><a href="#14、Vue-2-0-不再支持在-v-html-中使用过滤器怎么办？" class="headerlink" title="14、Vue 2.0 不再支持在 v-html 中使用过滤器怎么办？"></a>14、Vue 2.0 不再支持在 v-html 中使用过滤器怎么办？</h5><p>解决方法：</p>
+<p>①全局方法（推荐）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.msg = function（msg）&#123;</span><br><span class="line">  return msg.replace（&quot;\n&quot;，&quot;&lt;br&gt;&quot;）</span><br><span class="line"> &#125;</span><br><span class="line"> &lt;div v-html=&quot;msg(content)&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>②computed方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed：&#123;</span><br><span class="line"> content：function(msg)&#123;</span><br><span class="line">  return msg.replace(&quot;\n&quot;，&quot;&lt;br&gt;&quot;)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div&gt;&#123;&#123;content&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>③$options.filters(推荐)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">filters：&#123;</span><br><span class="line"> msg：function(msg)&#123;</span><br><span class="line">  return msg.replace(/\n/g，&quot;&lt;br&gt;&quot;)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;，  　　</span><br><span class="line">data：&#123;</span><br><span class="line"> content：&quot;XXXX&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;div v-html=&quot;$options.filters.msg(content)&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="14、怎么解决vue打包后静态资源图片失效的问题？"><a href="#14、怎么解决vue打包后静态资源图片失效的问题？" class="headerlink" title="14、怎么解决vue打包后静态资源图片失效的问题？"></a>14、怎么解决vue打包后静态资源图片失效的问题？</h5><p>答：将静态资源的存放位置放在src目录下</p>
+<h5 id="16、怎么解决vue动态设置img的src不生效的问题？"><a href="#16、怎么解决vue动态设置img的src不生效的问题？" class="headerlink" title="16、怎么解决vue动态设置img的src不生效的问题？"></a>16、怎么解决vue动态设置img的src不生效的问题？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;img class=&quot;logo&quot; :src=&quot;logo&quot; alt=&quot;公司logo&quot;&gt;</span><br><span class="line">data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    logo:require(&quot;./../assets/images/logo.png&quot;),</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为动态添加src被当做静态资源处理了，没有进行编译，所以要加上require</p>
+<h5 id="17、跟keep-alive有关的生命周期是哪些？描述下这些生命周期"><a href="#17、跟keep-alive有关的生命周期是哪些？描述下这些生命周期" class="headerlink" title="17、跟keep-alive有关的生命周期是哪些？描述下这些生命周期"></a>17、跟keep-alive有关的生命周期是哪些？描述下这些生命周期</h5><p>activated和deactivated两个生命周期函数</p>
+<p>1.<strong>activated</strong>：当组件激活时，钩子触发的顺序是created-&gt;mounted-&gt;activated</p>
+<p>2.<strong>deactivated</strong>: 组件停用时会触发deactivated，当再次前进或者后退的时候只触发activated</p>
+<h5 id="18、你知道vue中key的原理吗？说说你对它的理解"><a href="#18、你知道vue中key的原理吗？说说你对它的理解" class="headerlink" title="18、你知道vue中key的原理吗？说说你对它的理解"></a>18、你知道vue中key的原理吗？说说你对它的理解</h5><p>暂时没弄明白，等会儿写</p>
+<h5 id="19、vue中怎么重置data？"><a href="#19、vue中怎么重置data？" class="headerlink" title="19、vue中怎么重置data？"></a>19、vue中怎么重置data？</h5><p>答：Object.assign()</p>
+<p>Object.assign（）方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123; a: 1 &#125;;</span><br><span class="line">var o2 = &#123; b: 2 &#125;;</span><br><span class="line">var o3 = &#123; c: 3 &#125;;</span><br><span class="line">var obj = Object.assign(o1, o2, o3);</span><br><span class="line">console.log(obj); // &#123; a: 1, b: 2, c: 3 &#125;</span><br><span class="line">console.log(o1); // &#123; a: 1, b: 2, c: 3 &#125;,注意目标对象自身也会改变。</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>，具有相同属性的对象，同名属性，后边的会覆盖前边的。</p>
+<p>由于Object.assign()有上述特性，所以我们在Vue中可以这样使用：</p>
+<p>Vue组件可能会有这样的需求：在某种情况下，需要重置Vue组件的data数据。此时，我们可以通过this.$data获取当前状态下的data，通过this.$options.data()获取该组件初始状态下的data。</p>
+<p>然后只要使用<strong>Object.assign(this.options.data())</strong>就可以将当前状态的data重置为初始状态。</p>
+<h5 id="20、vue怎么实现强制刷新组件？"><a href="#20、vue怎么实现强制刷新组件？" class="headerlink" title="20、vue怎么实现强制刷新组件？"></a>20、vue怎么实现强制刷新组件？</h5><p>答：① v-if ② this.$forceUpdate</p>
+<p>v-if<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//当v-if的值发生变化时，组件都会被重新渲染一遍。因此，利用v-if指令的特性，可以达到强制</span><br><span class="line">&lt;comp v-if=&quot;update&quot;&gt;&lt;/comp&gt;</span><br><span class="line">&lt;button @click=&quot;reload()&quot;&gt;刷新comp组件&lt;/button&gt;</span><br><span class="line">data() &#123;</span><br><span class="line"> return &#123;</span><br><span class="line">   update: true</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> methods: &#123;</span><br><span class="line">  reload() &#123;</span><br><span class="line">     // 移除组件</span><br><span class="line">    this.update = false</span><br><span class="line">      // 在组件移除后，重新渲染组件</span><br><span class="line">      // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。</span><br><span class="line">    this.$nextTick(() =&gt; &#123;</span><br><span class="line">      this.update = true</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>this.$forceUpdate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;reload()&quot;&gt;刷新当前组件&lt;/button&gt;</span><br><span class="line">methods: &#123;</span><br><span class="line">  reload() &#123;</span><br><span class="line">    this.$forceUpdate()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="21、vue如何优化首页的加载速度？"><a href="#21、vue如何优化首页的加载速度？" class="headerlink" title="21、vue如何优化首页的加载速度？"></a>21、vue如何优化首页的加载速度？</h5><p>① 第三方js库按CDN引入（一、cdn引入 二、去掉第三方库引入的import 三、把第三方库的js文件从打包文件里去掉）</p>
+<p>② vue-router路由懒加载</p>
+<p>③ 压缩图片资源</p>
+<p>④ 静态文件本地缓存</p>
+<p>http缓存：推荐网站：<a href="https://www.cnblogs.com/chinajava/p/5705169.html" target="_blank" rel="noopener">https://www.cnblogs.com/chinajava/p/5705169.html</a><br>service worker离线缓存:，缺点：需要在HTTPS站点下，推荐：<a href="http://lzw.me/a/pwa-service-worker.html" target="_blank" rel="noopener">http://lzw.me/a/pwa-service-worker.html</a></p>
+<p>⑤ 服务器端SSR渲染<br>除了上面的方案以外，另一种方案也不容小视<br>我们先说说通常项目中是如何加载页面数据：Vue组件生命周期中请求异步接口，在mounted之前应该都可以，据我了解绝大部分同学是在mounted的时候执行异步请求。但是我们可以把页面需要的请求放到Vue-Router的守卫中执行，意思是在路由beforeEnter之前就可以请求待加载页面中所有组件需要的数据，此时待加载页面的Vue组件还没开始渲染，而Vue组件开始渲染的时候我们就可以用Vuex里面的数据了。<br>以上方法的实现思路：<br><img src="img/aiqianduan/WX20200318-180459@2x.png" alt="1584104477342.jpg"><br>图意：每个页面（Page）中都会有很多个Vue组件，可以在Vue组件中添加自定义属性fetchData，fetchData里面可以执行异步请求（图中执行Vuex的Action），但是我们怎么获取到所有组件的fetchData方法并执行呢？如图所示，在router.beforeResolve守卫中，我们看看router.beforeResolve的定义，所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用，意思是即使页面中有异步组件，它会等待异步组件解析之后执行，并且解析守卫在beforeEnter之前执行。那我们怎么在解析守卫中获取到待加载页面的所有组件呢？通过router.getMatchedComponents方法。<br><img src="img/aiqianduan/WX20200318-180522@2x.png" alt="1584104536697.jpg"><br><img src="img/aiqianduan/WX20200318-180538@2x.png" alt="1584104524469.jpg"><br>这样我们就可以在解析守卫中获取到所有待加载组件的fetchData方法并执行，这样无疑会在组件开始渲染之后获取到所有数据，提高页面加载速度。以上方法的实现思路：</p>
+<p>很多人可能有个疑问，如果异步请求放在beforeCreate和created不是一样吗？答案是否定的，因为这种方式可以将异步请求放到beforeCreate之前！</p>
+<h5 id="22、你了解vue的diff算法吗？"><a href="#22、你了解vue的diff算法吗？" class="headerlink" title="22、你了解vue的diff算法吗？"></a>22、你了解vue的diff算法吗？</h5><p>推荐网站：<a href="https://www.cnblogs.com/wind-lanyan/p/9061684.html" target="_blank" rel="noopener">https://www.cnblogs.com/wind-lanyan/p/9061684.html</a></p>
+<h5 id="23、vue能监听到数组变化的方法有哪些？为什么这些方法能监听到呢？"><a href="#23、vue能监听到数组变化的方法有哪些？为什么这些方法能监听到呢？" class="headerlink" title="23、vue能监听到数组变化的方法有哪些？为什么这些方法能监听到呢？"></a>23、vue能监听到数组变化的方法有哪些？为什么这些方法能监听到呢？</h5><p>Vue.js观察数组变化主要通过以下7个方法（push、pop、shift、unshift、splice、sort、reverse）</p>
+<p>大家知道，通过Object.defineProperty()劫持数组为其设置getter和setter后，调用的数组的push、splice、pop等方法改变数组元素时并不会触发数组的setter，继而数组的数据变化并不是响应式的，但是vue实际开发中却是实时响应的，是因为vue重写了数组的push、splice、pop等方法</p>
+<p>从源码中可以看出，ob.dep.notify()将当前数组的变更通知给其订阅者，这样当使用重写后方法改变数组后，数组订阅者会将这边变化更新到页面中</p>
+<h5 id="24、说说你对proxy的理解？"><a href="#24、说说你对proxy的理解？" class="headerlink" title="24、说说你对proxy的理解？"></a>24、说说你对proxy的理解？</h5><p>Proxy用于修改某些操作的默认行为，也可以理解为在目标对象之前架设一层拦截，外部所有的访问都必须先通过这层拦截，因此提供了一种机制，可以对外部的访问进行过滤和修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var target = &#123;</span><br><span class="line">   name: &apos;zhangsan&apos;,</span><br><span class="line">   age:20,</span><br><span class="line">   sex:&apos;男&apos;</span><br><span class="line"> &#125;</span><br><span class="line">var logHandler = &#123;</span><br><span class="line">  get(target, key) &#123;</span><br><span class="line">    console.log(`$&#123;key&#125;被读取`)</span><br><span class="line">    return target[key]</span><br><span class="line">   &#125;,</span><br><span class="line">  set(target, key, value) &#123;</span><br><span class="line">    console.log(`$&#123;key&#125;被设置为$&#123;value&#125;`)</span><br><span class="line">    target[key] = value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var demo = new Proxy(target, logHandler)</span><br><span class="line">demo.name  //name被读取</span><br></pre></td></tr></table></figure></p>
+<p>var proxy = new Proxy(target, handler);</p>
+<p>Proxy对象的所有用法，都是上面的这种形式。不同的只是handle参数的写法。其中new Proxy用来生成Proxy实例，target是表示所要拦截的对象，handle是用来定制拦截行为的对象。</p>
+<p>我们可以将Proxy对象，设置到object.proxy属性，从而可以在object对象上调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123; proxy: new Proxy(target, handler) &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Proxy对象也可以作为其它对象的原型对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var proxy = new Proxy(&#123;&#125;, &#123;</span><br><span class="line">  get: function(target, property) &#123;</span><br><span class="line">    return 35;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">let obj = Object.create(proxy);</span><br><span class="line">obj.time // 35</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，proxy对象是obj的原型对象，obj本身并没有time属性，所以根据原型链，会在proxy对象上读取属性，从而被拦截。</p>
+<p>同一个拦截函数，可以设置多个操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var handler = &#123;</span><br><span class="line">  get: function (target, name) &#123;</span><br><span class="line">    if (name === &apos;prototype&apos;) &#123;</span><br><span class="line">       return Object.prototype;</span><br><span class="line">    &#125;</span><br><span class="line">    return &apos;Hello, &apos; + name;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  apply: function (target, thisBinding, args) &#123;</span><br><span class="line">    return args[0];</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  construct: function (target, args) &#123;</span><br><span class="line">    return &#123; value: args[1] &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">var fproxy = new Proxy(function (x, y) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;, handler);</span><br><span class="line"> </span><br><span class="line">fproxy(1, 2) // 1</span><br><span class="line">new fproxy(1, 2) // &#123;value: 2&#125;</span><br><span class="line">fproxy.prototype === Object.prototype // true</span><br><span class="line">fproxy.foo === &quot;Hello, foo&quot; // true</span><br></pre></td></tr></table></figure></p>
+<h5 id="25、怎么缓存当前的组件？缓存后怎么更新？"><a href="#25、怎么缓存当前的组件？缓存后怎么更新？" class="headerlink" title="25、怎么缓存当前的组件？缓存后怎么更新？"></a>25、怎么缓存当前的组件？缓存后怎么更新？</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br><span class="line">&lt;!-- 这里是需要keepalive的 --&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">    &lt;router-view v-if=&quot;$route.meta.keepAlive&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br><span class="line">&lt;!-- 这里不会被keepalive --&gt;</span><br><span class="line">&lt;router-view v-if=&quot;!$route.meta.keepAlive&quot;&gt;&lt;/router-view&gt;</span><br><span class="line">&#123;</span><br><span class="line">  path: &apos;&apos;,</span><br><span class="line">  name: &apos;&apos;,</span><br><span class="line">  component: ,</span><br><span class="line">  meta: &#123;keepAlive: true&#125; // 这个是需要keepalive的</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  path: &apos;&apos;,</span><br><span class="line">  name: &apos;&apos;,</span><br><span class="line">  component: ,</span><br><span class="line">  meta: &#123;keepAlive: false&#125; // 这是不会被keepalive的</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果缓存的组件想要清空数据或者执行初始化方法，在加载组件的时候调用activated钩子函数，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">activated: function () &#123;</span><br><span class="line">    this.data = &apos;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="26、axios怎么解决跨域的问题？"><a href="#26、axios怎么解决跨域的问题？" class="headerlink" title="26、axios怎么解决跨域的问题？"></a>26、axios怎么解决跨域的问题？</h5><p>使用axios直接进行跨域访问不可行，我们需要配置代理</p>
+<p>代理可以解决的原因：</p>
+<p>因为客户端请求服务端的数据是存在跨域问题的，而==服务器和服务器之间可以相互请求数据，是没有跨域的概念==（如果服务器没有设置禁止跨域的权限问题），也就是说，我们可以配置一个代理的服务器可以请求另一个服务器中的数据，然后把请求出来的数据返回到我们的代理服务器中，代理服务器再返回数据给我们的客户端，这样我们就可以实现跨域访问数据</p>
+<p>1.配置BaseUrl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">Vue.prototype.$axios = axios</span><br><span class="line">axios.defaults.baseURL = &apos;/api&apos;  //关键代码</span><br></pre></td></tr></table></figure></p>
+<p>2.配置代理</p>
+<p>在config文件夹下的index.js文件中的proxyTable字段中，作如下处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line"> &apos;/api&apos;: &#123;</span><br><span class="line">   target:&apos;http://api.douban.com/v2&apos;, // 你请求的第三方接口</span><br><span class="line">   changeOrigin:true,</span><br><span class="line">// 在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，</span><br><span class="line">//这样服务端和服务端进行数据的交互就不会有跨域问题</span><br><span class="line">   pathRewrite:&#123;  // 路径重写，</span><br><span class="line">    &apos;^/api&apos;: &apos;&apos;</span><br><span class="line">// 替换target中的请求地址，也就是说以后你在请求http://api.douban.com/v2/XXXXX</span><br><span class="line">//这个地址的时候直接写成/api即可。</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>在具体使用axios的地方，修改url如下即可<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">axios.get(&quot;/movie/top250&quot;).then((res) =&gt; &#123;</span><br><span class="line">  res = res.data</span><br><span class="line">  if (res.errno === ERR_OK) &#123;</span><br><span class="line">    this.themeList=res.data;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;).catch((error) =&gt; &#123;</span><br><span class="line">  console.warn(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原理：</p>
+<p>因为我们给url加上了前缀/api，我们访问/movie/top250就当于访问了：localhost:8080/api/movie/top250（其中localhost:8080是默认的IP和端口）。</p>
+<p>在index.js中的proxyTable中拦截了/api,<strong>并把/api及其前面的所有</strong>替换成了target中的内容，因此实际访问Url是<a href="http://api.douban.com/v2/movie/top250。" target="_blank" rel="noopener">http://api.douban.com/v2/movie/top250。</a></p>
+<p>至此，纯前端配置代理解决axios跨域得到解决</p>
+<h5 id="27、怎么实现路由懒加载呢？"><a href="#27、怎么实现路由懒加载呢？" class="headerlink" title="27、怎么实现路由懒加载呢？"></a>27、怎么实现路由懒加载呢？</h5><p>第一种（最常用）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const Foo = () =&gt; import(&apos;./Foo.vue&apos;)</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: &apos;/foo&apos;, component: Foo &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>第二种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const router = new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">   &#123;</span><br><span class="line">     path: &apos;/index&apos;,</span><br><span class="line">     component: (resolve) =&gt; &#123;</span><br><span class="line">        require([&apos;../components/index&apos;], resolve) // 这里是你的模块 不用import去引入了</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>第三种（官方推荐）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// r就是resolve</span><br><span class="line">const list = r =&gt; require.ensure([], () =&gt; r(require(&apos;../components/list/list&apos;)), &apos;list&apos;);</span><br><span class="line">// 路由也是正常的写法  这种是官方推荐的写的 按模块划分懒加载</span><br><span class="line">const router = new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &apos;/list/blog&apos;,</span><br><span class="line">    component: list,</span><br><span class="line">    name: &apos;blog&apos;</span><br><span class="line">  &#125;</span><br><span class="line"> ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="28、怎样动态加载路由？"><a href="#28、怎样动态加载路由？" class="headerlink" title="28、怎样动态加载路由？"></a>28、怎样动态加载路由？</h5><p>一、思路</p>
+<p>① 在vue-router对象中首先<strong>初始化公共路由</strong>，比如（首页，404，login）等</p>
+<p>② 用户登陆成功后，根据用户的角色信息，<strong>获取对应权限菜单信息menuList</strong>，并将后台返回的menuList转换成我们需要的router数据结构</p>
+<p>③ 通过<strong>router.addRouter(routes)</strong>方法，同时我们可以将转后的路由信息保存于vuex，这样我们可以在我们的SideBar组件中获取我们的全部路由信息，并且渲染我们的左侧菜单栏，让动态路由实现。</p>
+<p>二、实现</p>
+<p>① 初始化公共路由<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//只显示主要代码</span><br><span class="line">export const routes= [</span><br><span class="line"> &#123; path: &apos;/login&apos;, component: () =&gt; import(&apos;@/views/login/index&apos;), hidden: true &#125;,</span><br><span class="line"> &#123; path: &apos;/404&apos;, component: () =&gt; import(&apos;@/views/404&apos;), hidden: true &#125;</span><br><span class="line">]</span><br><span class="line">export default new Router(&#123;</span><br><span class="line"> scrollBehavior: () =&gt; (&#123; y: 0 &#125;),</span><br><span class="line"> routes: routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>② 登陆成功后，获取菜单信息menuList，并转换成router数组的结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line"> NProgress.start()//进度条包 npm安装</span><br><span class="line"> if (getToken()) &#123;</span><br><span class="line">  /*有 token，已经登录成功*/</span><br><span class="line">  if (to.path === &apos;/login&apos;) &#123;</span><br><span class="line">   next(&#123; path: &apos;/&apos; &#125;)</span><br><span class="line">   NProgress.done()</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">   if (store.getters.roles.length === 0) &#123; // 判断当前用户是否已拉取完user_info信息</span><br><span class="line">    store.dispatch(&apos;GetInfo&apos;).then(res =&gt; &#123; // 拉取user_info</span><br><span class="line">     const roles = res.roles</span><br><span class="line">     store.dispatch(&quot;GetMenu&quot;).then(data =&gt; &#123;</span><br><span class="line">      initMenu(router, data);</span><br><span class="line">     &#125;);</span><br><span class="line">     next()</span><br><span class="line">    &#125;).catch((err) =&gt; &#123;</span><br><span class="line">     store.dispatch(&apos;FedLogOut&apos;).then(() =&gt; &#123;</span><br><span class="line">      Message.error(err || &apos;Verification failed, please login again&apos;)</span><br><span class="line">      next(&#123; path: &apos;/&apos; &#125;)</span><br><span class="line">     &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">    next()</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  /* 无 token*/</span><br><span class="line">  if (whiteList.indexOf(to.path) !== -1) &#123; // 在免登录白名单，直接进入</span><br><span class="line">   next()</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">   next(&apos;/login&apos;) // 否则全部重定向到登录页</span><br><span class="line">   NProgress.done()</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br><span class="line">router.afterEach(() =&gt; &#123;</span><br><span class="line"> NProgress.done()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>③ 动态加载路由<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import store from &apos;../store&apos;</span><br><span class="line">export const initMenu = (router, menu) =&gt; &#123;</span><br><span class="line"> if (menu.length === 0) &#123;</span><br><span class="line">  return</span><br><span class="line"> &#125;</span><br><span class="line"> let menus = formatRoutes(menu);</span><br><span class="line"> </span><br><span class="line"> let unfound = &#123; path: &apos;*&apos;, redirect: &apos;/404&apos;, hidden: true &#125;</span><br><span class="line"> menus.push(unfound) //404组件最后添加</span><br><span class="line"> router.addRoutes(menus)</span><br><span class="line"> store.commit(&apos;ADD_ROUTERS&apos;,menus)</span><br><span class="line">&#125;</span><br><span class="line">export const formatRoutes = (aMenu) =&gt; &#123;</span><br><span class="line"> const aRouter = []</span><br><span class="line"> aMenu.forEach(oMenu =&gt; &#123;</span><br><span class="line">  const &#123;</span><br><span class="line">   path,</span><br><span class="line">   component,</span><br><span class="line">   name,</span><br><span class="line">   icon,</span><br><span class="line">   childrens</span><br><span class="line">  &#125; = oMenu</span><br><span class="line">  if (!validatenull(component)) &#123;</span><br><span class="line">   let filePath;</span><br><span class="line">   const oRouter = &#123;</span><br><span class="line">    path: path,</span><br><span class="line">    component(resolve) &#123;</span><br><span class="line">     let componentPath = &apos;&apos;</span><br><span class="line">     if (component === &apos;Layout&apos;) &#123;</span><br><span class="line">      require([&apos;../views/layout/Layout&apos;], resolve)</span><br><span class="line">      return</span><br><span class="line">     &#125; else &#123;</span><br><span class="line">      componentPath = component</span><br><span class="line">     &#125;</span><br><span class="line">     require([`../$&#123;componentPath&#125;.vue`], resolve)</span><br><span class="line">    &#125;,</span><br><span class="line">    name: name,</span><br><span class="line">    icon: icon,</span><br><span class="line">    children: validatenull(childrens) ? [] : formatRoutes(childrens)</span><br><span class="line">   &#125;</span><br><span class="line">   aRouter.push(oRouter)</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;)</span><br><span class="line"> return aRouter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>④ 渲染菜单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"> &lt;el-scrollbar wrapClass=&quot;scrollbar-wrapper&quot;&gt;</span><br><span class="line">  &lt;el-menu</span><br><span class="line">   mode=&quot;vertical&quot;</span><br><span class="line">   :show-timeout=&quot;200&quot;</span><br><span class="line">   :default-active=&quot;$route.path&quot;</span><br><span class="line">   :collapse=&quot;isCollapse&quot;</span><br><span class="line">   background-color=&quot;#304156&quot;</span><br><span class="line">   text-color=&quot;#bfcbd9&quot;</span><br><span class="line">   active-text-color=&quot;#409EFF&quot;</span><br><span class="line">  &gt;</span><br><span class="line">   &lt;sidebar-item v-for=&quot;route in permission_routers&quot; :key=&quot;route.name&quot; :item=&quot;route&quot; :base-path=&quot;route.path&quot;&gt;&lt;/sidebar-item&gt;</span><br><span class="line">  &lt;/el-menu&gt;</span><br><span class="line"> &lt;/el-scrollbar&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; mapGetters &#125; from &apos;vuex&apos;</span><br><span class="line">import SidebarItem from &apos;./SidebarItem&apos;</span><br><span class="line">import &#123; validatenull &#125; from &quot;@/utils/validate&quot;;</span><br><span class="line">import &#123; initMenu &#125; from &quot;@/utils/util&quot;;</span><br><span class="line"> </span><br><span class="line">export default &#123;</span><br><span class="line"> components: &#123; SidebarItem &#125;,</span><br><span class="line"> created() &#123;</span><br><span class="line"> &#125;,</span><br><span class="line"> computed: &#123;</span><br><span class="line">  ...mapGetters([</span><br><span class="line">   &apos;permission_routers&apos;,</span><br><span class="line">   &apos;sidebar&apos;,</span><br><span class="line">   &apos;addRouters&apos;</span><br><span class="line">  ]),</span><br><span class="line">  isCollapse() &#123;</span><br><span class="line">   return !this.sidebar.opened</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>就这样我们动态加载路由就是实现了，关键点就是router.addRoute方法</p>
+<p>⑤ 防坑</p>
+<p>点击刷新的时候页面空白 控制台也不报错？</p>
+<p>点击刷新，vue-router会重新初始化，那么我们之前的动态addRoute就不存在了，此时访问一个不存在的页面，所以我们的sidebar组件也就不会被访问，那么也无法获取菜单信息，就导致页面空白。所以我们需要把加载菜单信息这一步放在router的全局守卫beforeEach中就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export const initMenu = (router, menu) =&gt; &#123;</span><br><span class="line"> if (menu.length === 0) &#123;</span><br><span class="line">  return</span><br><span class="line"> &#125;</span><br><span class="line"> let menus = formatRoutes(menu);</span><br><span class="line"> // 最后添加</span><br><span class="line"> let unfound = &#123; path: &apos;*&apos;, redirect: &apos;/404&apos;, hidden: true &#125;</span><br><span class="line"> menus.push(unfound)</span><br><span class="line"> router.addRoutes(menus)</span><br><span class="line"> store.commit(&apos;ADD_ROUTERS&apos;,menus)</span><br><span class="line">&#125;</span><br><span class="line">//404组件一定要放在动态路由组件的最后，不然你刷新动态加载的页面，会跳转到404页面的</span><br></pre></td></tr></table></figure></p>
+<h5 id="29、切换到新路由时，页面要滚动到顶部或保持原先的滚动位置怎么做呢？"><a href="#29、切换到新路由时，页面要滚动到顶部或保持原先的滚动位置怎么做呢？" class="headerlink" title="29、切换到新路由时，页面要滚动到顶部或保持原先的滚动位置怎么做呢？"></a>29、切换到新路由时，页面要滚动到顶部或保持原先的滚动位置怎么做呢？</h5><p>当创建一个 Router 实例，可以提供一个 scrollBehavior 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">注意: 这个功能只在 HTML5 history 模式下可用。</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line"> routes: [...],</span><br><span class="line"> scrollBehavior (to, from, savedPosition) &#123;</span><br><span class="line">  // return 期望滚动到哪个的位置</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>scrollBehavior 方法接收 to 和 from 路由对象。第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrollBehavior (to, from, savedPosition) &#123;</span><br><span class="line"> return &#123; x: 0, y: 0 &#125;</span><br><span class="line">&#125; // 对于所有路由导航，简单地让页面滚动到顶部。</span><br></pre></td></tr></table></figure></p>
+<p>返回 savedPosition，在按下 后退/前进 按钮时，在滚动条位置，就会像浏览器的原生表现那样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scrollBehavior (to, from, savedPosition) &#123;</span><br><span class="line"> if (savedPosition) &#123;</span><br><span class="line">  return savedPosition</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  return &#123; x: 0, y: 0 &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>模拟『滚动到锚点』的行为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scrollBehavior (to, from, savedPosition) &#123;</span><br><span class="line"> if (to.hash) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">   selector: to.hash</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还可以利用路由元信息更细颗粒度地控制滚动。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">routes: [</span><br><span class="line"> &#123; path: &apos;/&apos;, component: Home, meta: &#123; scrollToTop: true &#125;&#125;,</span><br><span class="line"> &#123; path: &apos;/foo&apos;, component: Foo &#125;,</span><br><span class="line"> &#123; path: &apos;/bar&apos;, component: Bar, meta: &#123; scrollToTop: true &#125;&#125;</span><br><span class="line">]</span><br><span class="line">const scrollBehavior = (to, from, savedPosition) =&gt; &#123;</span><br><span class="line"> if (savedPosition) &#123;</span><br><span class="line">  return savedPosition</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">  const position = &#123;&#125;</span><br><span class="line">  if (to.hash) &#123;</span><br><span class="line">   position.selector = to.hash</span><br><span class="line">  &#125;</span><br><span class="line">   if (to.matched.some(m =&gt; m.meta.scrollToTop)) &#123;</span><br><span class="line">   position.x = 0</span><br><span class="line">   position.y = 0</span><br><span class="line">  &#125;</span><br><span class="line">  return position</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还可以在main.js入口文件配合vue-router写这个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.afterEach((to,from,next) =&gt; &#123;</span><br><span class="line">  window.scrollTo(0,0);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h5 id="30、vue-router如何响应路由参数的变化？"><a href="#30、vue-router如何响应路由参数的变化？" class="headerlink" title="30、vue-router如何响应路由参数的变化？"></a>30、vue-router如何响应路由参数的变化？</h5><p>当使用路由参数时，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;path:’/list/:id’component:Foo&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从 /list/aside导航到 /list/foo，原来的组件实例会被复用。</p>
+<p>因为两个路由都渲染同个组件Foo，比起销毁再创建，复用则更加高效。</p>
+<p>不过，这也意味着组件的生命周期钩子不会再被调用。</p>
+<p>如果跳转到相同的路由还会报以下错误<br><img src="img/aiqianduan/WX20200318-180600@2x.png" alt="1584105319470.jpg"><br>这个时候我们需要重写push方法，在src/router/index.js 里面import VueRouter from ‘vue-router’下面写入下面方法即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const routerPush = VueRouter.prototype.push</span><br><span class="line">VueRouter.prototype.push = function push(location) &#123;</span><br><span class="line">  return routerPush.call(this, location).catch(error=&gt; error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>如何响应不同的数据呢？</strong></p>
+<p>① 复用组件时，想对路由参数的变化作出响应的话，你可以简单地 ==watch (监测变化) $route 对象==：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const User = &#123;</span><br><span class="line">  template: &apos;...&apos;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    &apos;$route&apos; (to, from) &#123;</span><br><span class="line">      // 对路由变化作出响应...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>② 使用beforeRouteUpdate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const User = &#123;</span><br><span class="line">  template: &apos;...&apos;,</span><br><span class="line">  beforeRouteUpdate (to, from, next) &#123;</span><br><span class="line">    // react to route changes...</span><br><span class="line">    // don&apos;t forget to call next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<p>（1）从同一个组件跳转到同一个组件。</p>
+<p>（2）生命周期钩子created和mounted都不会调用。</p>
+<h5 id="31、vue模板中为什么以-、-开始的变量无法渲染？"><a href="#31、vue模板中为什么以-、-开始的变量无法渲染？" class="headerlink" title="31、vue模板中为什么以_、$开始的变量无法渲染？"></a>31、vue模板中为什么以_、$开始的变量无法渲染？</h5><p>名字以_或$开始的属性不会被vue实例代理，因为它们可能与vue的内置属性与API方法冲突。用vm.data._property 访问它们。</p>
+<h5 id="32、vue中，如何监听一个对象内部的变化？"><a href="#32、vue中，如何监听一个对象内部的变化？" class="headerlink" title="32、vue中，如何监听一个对象内部的变化？"></a>32、vue中，如何监听一个对象内部的变化？</h5><p>方法①：对整个obj深层监听<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line"> obj:&#123;</span><br><span class="line">  handler(newValue,oldValue)&#123;</span><br><span class="line">   console.log(&apos;obj changed&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  deep: true,//深度遍历</span><br><span class="line">  immediate: true</span><br><span class="line">//默认第一次绑定的时候不会触发watch监听，值为true时可以在最初绑定的时候执行</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法② ：指定key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    &quot;dataobj.name&quot;: &#123;</span><br><span class="line">      handler(newValue, oldValue) &#123;</span><br><span class="line">        console.log(&quot;obj changed&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法③：computed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed()&#123;</span><br><span class="line"> ar()&#123;</span><br><span class="line">  return this.obj.name</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="33、v-for循环时为什么要加key？"><a href="#33、v-for循环时为什么要加key？" class="headerlink" title="33、v-for循环时为什么要加key？"></a>33、v-for循环时为什么要加key？</h5><p>key的作用主要是为了高效的更新虚拟DOM，是因为Virtual DOM 使用Diff算法实现的原因。</p>
+<p>当某一层有很多相同的节点时，也就是列表节点时，Diff算法的更新过程默认情况下也是遵循以上原则。</p>
+<p>比如一下这个情况<br><img src="img/aiqianduan/WX20200318-180647@2x.png" alt="1584108439278.jpg"><br>我们希望可以在B和C之间加一个F，Diff算法默认执行起来是这样的：<br><img src="img/aiqianduan/WX20200318-180708@2x.png" alt="1584108685723.jpg"><br>即把C更新成F，D更新成C，E更新成D，最后再插入E，是不是很没有效率？</p>
+<p>所以我们需要使用key来给每个节点做一个唯一标识，Diff算法就可以正确的识别此节点，找到正确的位置区插入新的节点。<br><img src="img/aiqianduan/WX20200318-180720@2x.png" alt="1584108725115.jpg"></p>
+<h5 id="34、-nextTick用过吗，有什么作用？"><a href="#34、-nextTick用过吗，有什么作用？" class="headerlink" title="34、$nextTick用过吗，有什么作用？"></a>34、$nextTick用过吗，有什么作用？</h5><p>在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。</p>
+<p>解决的问题：==有些时候在改变数据后立即要对dom进行操作==，此时获取到的dom仍是获取到的是数据刷新前的dom，无法满足需要，这个时候就用到了$nextTick。</p>
+<h5 id="35、vue和react的区别是什么？"><a href="#35、vue和react的区别是什么？" class="headerlink" title="35、vue和react的区别是什么？"></a>35、vue和react的区别是什么？</h5><p>① React严格上只针对MVC的view层,Vue则是MVVM模式</p>
+<p>② virtual DOM不一样,vue会跟踪每一个组件的依赖关系,不需要重新渲染整个组件树.而对于React而言,每当应用的状态被改变时,全部组件都会重新渲染,所以react中会需要shouldComponentUpdate这个生命周期函数方法来进行控制</p>
+<p>③ 组件写法不一样, React推荐的做法是 JSX + inline style, 也就是把HTML和CSS全都写进JavaScript了,即’all in js’; Vue推荐的做法是webpack+vue-loader的单文件组件格式,即html,css,jd写在同一个文件;</p>
+<p>④ 数据绑定: vue实现了数据的双向绑定,react数据流动是单向的</p>
+<p>⑤ state对象在react应用中不可变的,需要使用setState方法更新状态;在vue中,state对象不是必须的,数据由data属性在vue对象中管理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    万俟逍
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="KevinBlack.github.io/79c7d788.html" title="Vue考点">KevinBlack.github.io/79c7d788.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/a511212d.html" rel="next" title="AE的菜单方面的中英文对照">
+                <i class="fa fa-chevron-left"></i> AE的菜单方面的中英文对照
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a9840e73.html" rel="prev" title="JavaScript复习">
+                JavaScript复习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avatar.jpg"
+                alt="万俟逍" />
+            
+              <p class="site-author-name" itemprop="name">万俟逍</p>
+              <p class="site-description motion-element" itemprop="description">涅槃之路，向死而生</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-页面中定义一个定时器，在哪个阶段清除？"><span class="nav-number">1.</span> <span class="nav-text">1.页面中定义一个定时器，在哪个阶段清除？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-父组件如何获取子组件的数据，子组件如何获取父组件的数据，父子组件如何传值？"><span class="nav-number">2.</span> <span class="nav-text">2.父组件如何获取子组件的数据，子组件如何获取父组件的数据，父子组件如何传值？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-自定义指令如何定义，它的生命周期是什么？"><span class="nav-number">3.</span> <span class="nav-text">3.自定义指令如何定义，它的生命周期是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、vue-生命周期，各个阶段简单讲一下？"><span class="nav-number">4.</span> <span class="nav-text">4、vue 生命周期，各个阶段简单讲一下？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、watch-和-computed-的区别？"><span class="nav-number">5.</span> <span class="nav-text">5、watch 和 computed 的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、请说一下-computed-中的-getter-和-setter"><span class="nav-number">6.</span> <span class="nav-text">6、请说一下 computed 中的 getter 和 setter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、导航钩子有哪几种，分别如何用，如何将数据传入下一个点击的路由页面？"><span class="nav-number">7.</span> <span class="nav-text">7、导航钩子有哪几种，分别如何用，如何将数据传入下一个点击的路由页面？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、es6-的特有的类型，-常用的操作数组的方法都有哪些？"><span class="nav-number">8.</span> <span class="nav-text">8、es6 的特有的类型， 常用的操作数组的方法都有哪些？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9、vue-双向绑定原理？"><span class="nav-number">9.</span> <span class="nav-text">9、vue 双向绑定原理？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10、vue-router-的实现原理，history-和-hash-模式有什么区别？"><span class="nav-number">10.</span> <span class="nav-text">10、vue-router 的实现原理，history 和 hash 模式有什么区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11、怎么在vue中点击别的区域输入框不会失去焦点？"><span class="nav-number">11.</span> <span class="nav-text">11、怎么在vue中点击别的区域输入框不会失去焦点？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12、vue中data的属性可以和methods中的方法同名吗？为什么？"><span class="nav-number">12.</span> <span class="nav-text">12、vue中data的属性可以和methods中的方法同名吗？为什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13、怎么给vue定义全局的方法？"><span class="nav-number">13.</span> <span class="nav-text">13、怎么给vue定义全局的方法？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14、Vue-2-0-不再支持在-v-html-中使用过滤器怎么办？"><span class="nav-number">14.</span> <span class="nav-text">14、Vue 2.0 不再支持在 v-html 中使用过滤器怎么办？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14、怎么解决vue打包后静态资源图片失效的问题？"><span class="nav-number">15.</span> <span class="nav-text">14、怎么解决vue打包后静态资源图片失效的问题？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16、怎么解决vue动态设置img的src不生效的问题？"><span class="nav-number">16.</span> <span class="nav-text">16、怎么解决vue动态设置img的src不生效的问题？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17、跟keep-alive有关的生命周期是哪些？描述下这些生命周期"><span class="nav-number">17.</span> <span class="nav-text">17、跟keep-alive有关的生命周期是哪些？描述下这些生命周期</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18、你知道vue中key的原理吗？说说你对它的理解"><span class="nav-number">18.</span> <span class="nav-text">18、你知道vue中key的原理吗？说说你对它的理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19、vue中怎么重置data？"><span class="nav-number">19.</span> <span class="nav-text">19、vue中怎么重置data？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#20、vue怎么实现强制刷新组件？"><span class="nav-number">20.</span> <span class="nav-text">20、vue怎么实现强制刷新组件？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#21、vue如何优化首页的加载速度？"><span class="nav-number">21.</span> <span class="nav-text">21、vue如何优化首页的加载速度？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#22、你了解vue的diff算法吗？"><span class="nav-number">22.</span> <span class="nav-text">22、你了解vue的diff算法吗？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#23、vue能监听到数组变化的方法有哪些？为什么这些方法能监听到呢？"><span class="nav-number">23.</span> <span class="nav-text">23、vue能监听到数组变化的方法有哪些？为什么这些方法能监听到呢？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#24、说说你对proxy的理解？"><span class="nav-number">24.</span> <span class="nav-text">24、说说你对proxy的理解？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#25、怎么缓存当前的组件？缓存后怎么更新？"><span class="nav-number">25.</span> <span class="nav-text">25、怎么缓存当前的组件？缓存后怎么更新？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#26、axios怎么解决跨域的问题？"><span class="nav-number">26.</span> <span class="nav-text">26、axios怎么解决跨域的问题？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#27、怎么实现路由懒加载呢？"><span class="nav-number">27.</span> <span class="nav-text">27、怎么实现路由懒加载呢？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#28、怎样动态加载路由？"><span class="nav-number">28.</span> <span class="nav-text">28、怎样动态加载路由？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#29、切换到新路由时，页面要滚动到顶部或保持原先的滚动位置怎么做呢？"><span class="nav-number">29.</span> <span class="nav-text">29、切换到新路由时，页面要滚动到顶部或保持原先的滚动位置怎么做呢？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#30、vue-router如何响应路由参数的变化？"><span class="nav-number">30.</span> <span class="nav-text">30、vue-router如何响应路由参数的变化？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#31、vue模板中为什么以-、-开始的变量无法渲染？"><span class="nav-number">31.</span> <span class="nav-text">31、vue模板中为什么以_、$开始的变量无法渲染？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#32、vue中，如何监听一个对象内部的变化？"><span class="nav-number">32.</span> <span class="nav-text">32、vue中，如何监听一个对象内部的变化？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#33、v-for循环时为什么要加key？"><span class="nav-number">33.</span> <span class="nav-text">33、v-for循环时为什么要加key？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#34、-nextTick用过吗，有什么作用？"><span class="nav-number">34.</span> <span class="nav-text">34、$nextTick用过吗，有什么作用？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#35、vue和react的区别是什么？"><span class="nav-number">35.</span> <span class="nav-text">35、vue和react的区别是什么？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">万俟逍</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[toc] 复习一、call和apply call和apply是用来指定上下文运行函数的   我们写了一个函数，比如：123function fn()&amp;#123;    ...&amp;#125;   此时如果要运行它，可以直接加圆括号运算符：1fn() 此时函数的上下文就是window对象。所谓的上下文就是函数中出现的this是谁(此处指DOM开发中，node中的对象无法打印出来)。但很多时候我们需要让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript复习">
+<meta property="og:url" content="KevinBlack.github.io/a9840e73.html">
+<meta property="og:site_name" content="♠♥♣♦">
+<meta property="og:description" content="[toc] 复习一、call和apply call和apply是用来指定上下文运行函数的   我们写了一个函数，比如：123function fn()&amp;#123;    ...&amp;#125;   此时如果要运行它，可以直接加圆括号运算符：1fn() 此时函数的上下文就是window对象。所谓的上下文就是函数中出现的this是谁(此处指DOM开发中，node中的对象无法打印出来)。但很多时候我们需要让">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-181513@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-181532@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-181548@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-181558@2x.png">
+<meta property="og:updated_time" content="2020-03-18T10:17:55.900Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript复习">
+<meta name="twitter:description" content="[toc] 复习一、call和apply call和apply是用来指定上下文运行函数的   我们写了一个函数，比如：123function fn()&amp;#123;    ...&amp;#125;   此时如果要运行它，可以直接加圆括号运算符：1fn() 此时函数的上下文就是window对象。所谓的上下文就是函数中出现的this是谁(此处指DOM开发中，node中的对象无法打印出来)。但很多时候我们需要让">
+<meta name="twitter:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-181513@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="KevinBlack.github.io/a9840e73.html"/>
+
+
+
+
+
+  <title>JavaScript复习 | ♠♥♣♦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">♠♥♣♦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="KevinBlack.github.io/a9840e73.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="万俟逍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="♠♥♣♦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-18T00:00:00+08:00">
+                2020-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/" itemprop="url" rel="index">
+                    <span itemprop="name">前端知识</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/笔记/爱前端/" itemprop="url" rel="index">
+                    <span itemprop="name">爱前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,670
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[toc]</p>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><h3 id="一、call和apply"><a href="#一、call和apply" class="headerlink" title="一、call和apply"></a>一、call和apply</h3><blockquote>
+<p>call和apply是用来指定上下文运行函数的</p>
+</blockquote>
+<ul>
+<li>我们写了一个函数，比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此时如果要运行它，可以直接加圆括号运算符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fn()</span><br></pre></td></tr></table></figure></p>
+<p>此时函数的上下文就是window对象。所谓的上下文就是函数中出现的this是谁(此处指DOM开发中，node中的对象无法打印出来)。但很多时候我们需要让函数指定上下文运行，此时就要使用call和apply，它俩功能完全一样！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 改变某个值</span><br><span class="line">// fn是一个函数，功能是让上下文对象的a属性变为100，但这个函数到底给谁的a属性变为了100，此时不知道，要看函数调用时指定的上下文是谁</span><br><span class="line">function fn()&#123;</span><br><span class="line">    this.a = 100;</span><br><span class="line">&#125;</span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    a : 8,</span><br><span class="line">    b : 9</span><br><span class="line">&#125;</span><br><span class="line">// 此时想把xiaoming的a值变成100，思路是让xiaoming成为fn的this！</span><br><span class="line">//运行fn函数，同时指定xiaoming对象是fn函数的上下文</span><br><span class="line">fn.call(xiaoming);</span><br><span class="line">console.log(xiaoming); // &#123;a:100,b:9&#125;</span><br><span class="line"></span><br><span class="line">// fn.apply(xiaoming);</span><br><span class="line">// console.log(xiaoming);  // 结果和call是一样的</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>示例2：call和apply的区别(只有传参时有区别！ )</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// fn是一个函数，功能是让上下文对象的a属性变为传入的两个参数的和</span><br><span class="line">function fn(m,n)&#123;</span><br><span class="line">    this.a = m + n;</span><br><span class="line">&#125;</span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    a : 8,</span><br><span class="line">    b : 9</span><br><span class="line">&#125;</span><br><span class="line">// call规定第一个是上下文指定的对象，后面的是参数</span><br><span class="line">fn.call(xiaoming,2,3);</span><br><span class="line">console.log(xiaoming); // &#123;a:5,b:9&#125;</span><br><span class="line"></span><br><span class="line">// apply规定第一个是上下文指定的对象，后面用数组(或类数组的可枚举的形式)来传参</span><br><span class="line">// fn.apply(xiaoming,[2,3]);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>示例3：call和apply的函数委托功能 – 假设有两个函数：厨师和服务员，服务员只负责把点的菜告诉厨师，厨师只负责根据传过来的菜单做菜，最初的思路可能是：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function chushi()&#123;</span><br><span class="line">    for(var i=0; i&lt;arguments.length; i++)&#123;</span><br><span class="line">        console.log(arguments); // 4.此处将打印出1</span><br><span class="line">    // arguments是所有传入的实参列表，无视函数传进来多少参数</span><br><span class="line">        console.log(&quot;我是厨子，我要做&quot; + arguments[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fuwuyuan()&#123;</span><br><span class="line">    console.log(arguments); // 2.此处打印出3</span><br><span class="line">    chushi(arguments); // 3.但如果将arguments作为参数直接传给chushi的话，将作为一个整体而不会自动展开(es6中的三个点展开运算符就是为了解决这个问题而设计的)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fuwuyuan(&quot;宫保鸡丁&quot;,&quot;鱼香肉丝&quot;,&quot;地三鲜&quot;); // 1.调用并传入菜单</span><br></pre></td></tr></table></figure>
+<p>所以此时就要应用apply<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function chushi()&#123;</span><br><span class="line">    for(var i=0; i&lt;arguments.length; i++)&#123;</span><br><span class="line">    // arguments是所有传入的是参列表，无视函数传进来多少参数</span><br><span class="line">        console.log(&quot;我是厨子，我要做&quot; + arguments[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fuwuyuan()&#123;</span><br><span class="line">    chushi.apply(null, arguments); // 因为chushi里面没有出现this所以不需要指定上下文，设置为null就可以了</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fuwuyuan(&quot;宫保鸡丁&quot;,&quot;鱼香肉丝&quot;,&quot;地三鲜&quot;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>示例4：求和及平均值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function sum()&#123;</span><br><span class="line">    for(var i=0, _sum=0; i&lt;arguments.lenght; i++ )&#123;</span><br><span class="line">        _sum += arguments[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return _sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function average()&#123;</span><br><span class="line">    var _sum = sum.apply(null, arguments);</span><br><span class="line">    return _sum / arguments.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(average(4,4,4,5,5,5));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>示例5：求最大值(Math.max)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(Math.max(4,5,6,7,8)); // 当所有的数字是散点式(每个数字用逗号隔开)的时候，可以直接写</span><br><span class="line"></span><br><span class="line">// 但当传入的是一个数组时，就用apply</span><br><span class="line">var arr = [4,5,6,7,8];</span><br><span class="line">console.log(Math.max.apply(null, arr));</span><br></pre></td></tr></table></figure>
+<h3 id="二、this"><a href="#二、this" class="headerlink" title="二、this"></a>二、this</h3><ol>
+<li>this是什么？<blockquote>
+<p>this就是函数的上下文。所以说，==函数的上下文，是除了参数之外的，最常用的使信息进入函数内部的手段==。</p>
+</blockquote>
+</li>
+<li>this是谁？怎么判断？<blockquote>
+<p>一定要死记：function定义的函数，this是谁，要看如何调用，而不是看如何定义！</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>判断this的七个规则：</p>
+<ul>
+<li><p>规则1：函数直接用圆括号运行，上下文是window</p>
+<blockquote>
+<p>fn();     上下文是window</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a : 3,</span><br><span class="line">    fun : function()&#123;</span><br><span class="line">        var a = 5;</span><br><span class="line">        return function()&#123;</span><br><span class="line">            alert(this.a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.fun()(); // undefined，因为最终调用函数(最后一个括号)的是window，而全局没有a这个变量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>规则2：对象打点调用函数，上下文是这个对象</p>
+<blockquote>
+<p>obj.fn();     上下文是obj</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a : 3,</span><br><span class="line">    fun : (function()&#123;</span><br><span class="line">        var a = 5;</span><br><span class="line">        return function()&#123;</span><br><span class="line">            alert(this.a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.fun(); // 3，因为最终调用函数(最后一个括号)的是obj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>规则3：数组(类数组对象)中枚举出函数，上下文是这个数组</p>
+<blockquote>
+<p>arr<a href="">idx</a>;     上下文是arr</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fn1(fn)&#123;</span><br><span class="line">    // 类数组对象中枚举出函数然后运行，上下文是这个类数组</span><br><span class="line">    arguments[0](3,4);</span><br><span class="line">&#125;</span><br><span class="line">function fn2()&#123;</span><br><span class="line">    // 也就是说fn2函数里的this居然是fn1的实际参数列表</span><br><span class="line">    alert(this.length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn1(fn2,5,6,7,8); // 所以弹出5(一共有5个实际参数)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>规则4：定时器调用函数，上下文是window</p>
+</li>
+<li>规则5：被当做了事件处理函数，上下文是触发事件的DOM元素</li>
+<li><p>规则6：用new调用函数，上下文是函数体内秘密创建的空白对象</p>
+<blockquote>
+<p>用new调用函数会经过四步走：  </p>
+<ul>
+<li>秘密创建空对象  </li>
+<li>将this绑定到这个空对象中  </li>
+<li>执行语句  </li>
+<li>返回这个对象</li>
+</ul>
+</blockquote>
+</li>
+<li><p>规则7：用apply、call指定上下文</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>面试题举例<blockquote>
+<p>第一道</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function Foo()&#123;</span><br><span class="line">    function getName()&#123;</span><br><span class="line">        alert(1);</span><br><span class="line">    &#125;</span><br><span class="line">    return this;</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName = function()&#123;</span><br><span class="line">    alert(2);</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.getName = function()&#123;</span><br><span class="line">    alert(3);</span><br><span class="line">&#125;</span><br><span class="line">var getName = function()&#123;</span><br><span class="line">    alert(4);</span><br><span class="line">&#125;</span><br><span class="line">function getName()&#123;</span><br><span class="line">    alert(5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 1</span><br><span class="line">getName();</span><br><span class="line"></span><br><span class="line">//2</span><br><span class="line">Foo().getName();</span><br><span class="line"></span><br><span class="line">//3</span><br><span class="line">new Foo().getName();</span><br><span class="line"></span><br><span class="line">//4</span><br><span class="line">new Foo.getName();</span><br><span class="line"></span><br><span class="line">//5</span><br><span class="line">new new Foo().getName();</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>解题思路：<br>1）首先排除123，不是4就是5；而函数的声明优先提升，所以先走5，然后提升变量的定义，走4，此时4会将5覆盖掉，所以答案是4<br>2）Foo()访问的是调用Foo的上下文，因为return的是this(与其内部闭包函数无关)，这里就是window，也就是相当于window.getName()，和1一样弹出4<br>3）记住new xxx()的优先级是非常高的！(注意是带括号的)一定要先完成new Foo()的部分，然后再去考虑getName()的部分！new Foo()是将第一个函数做了实例化，所以这道题的考点是原型链查找，对象能够沿着原型链，访问自己构造函数prototype上的属性和方法！所以这道题的答案是3<br>4）如果只是new，则优先级没那么高，所以这道题要先考虑后面Foo.getName()的部分，然后再考虑new！而后面就是一个函数，就相当于用new去调了一下这个函数，所以结果是2<br>5）优先级问题，首先看new Foo()部分，它返回一个对象Foo，然后这个对象打点调用了getName()，也就是通过原型链调用了自己构造函数的getName方法，最后还是用new调用了一下，相当于用new调普通函数，所以结果还是3</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>第二道</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function getLength()&#123;</span><br><span class="line">    return this.length; // this未知，要看如何调用</span><br><span class="line">&#125;</span><br><span class="line">function foo()&#123;</span><br><span class="line">    this.length = 1; // this未知，要看如何调用</span><br><span class="line">    return (function()&#123;</span><br><span class="line">        var length = 2;</span><br><span class="line">        return &#123;</span><br><span class="line">            length: function(a,b,c)&#123;</span><br><span class="line">                return this.arr.length;</span><br><span class="line">            &#125;,</span><br><span class="line">            arr : [1,2,3,4],</span><br><span class="line">            info : function()&#123;</span><br><span class="line">                return getLength.call(this.length); //以this.length作为上下文调用getLength函数</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&#125;</span><br><span class="line">var result = foo().info();</span><br><span class="line">alert(result);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解题思路：foo()适用于规则1，即被window调用，此时函数foo返回一个自执行函数，也就是说foo()就等同于</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    length: function(a,b,c)&#123;</span><br><span class="line">        return this.arr.length;</span><br><span class="line">    &#125;,</span><br><span class="line">    arr : [1,2,3,4],</span><br><span class="line">    info : function()&#123;</span><br><span class="line">        return getLength.call(this.length); //以this.length作为上下文调用getLength函数</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>foo().info()则符合规则2，即info中的this指的是对象本身，而对象本身的length是</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">length: function(a,b,c)&#123;</span><br><span class="line">    return this.arr.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>而这个小函数将被call指定为getLength的上下文传入，所以最终getLength得到的长度是这个小函数的长度，函数的长度为函数的形参列表的长度，小函数的形参列表是(a,b,c)，所以长度为3！(注意：函数的长度是形参列表的长度；arguments.length是函数实参列表的长度！arguments.callee表示函数本身，所以arguments.callee.length表示形参列表的长度！)</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>第三题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fun()&#123;</span><br><span class="line">    var a = 1;</span><br><span class="line">    this.a = 2;</span><br><span class="line">    function fn()&#123;</span><br><span class="line">        return this.a;</span><br><span class="line">    &#125;</span><br><span class="line">    fn.a = 3;</span><br><span class="line">    return fn;</span><br><span class="line">&#125;</span><br><span class="line">alert(fun()()); // fun()时，由于是被window调用，所以this.a=2就是在全局定义了一个变量a，fun()返回的是一个函数fn，fn再执行()的结果依旧是被window调用，此时全局的a为2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第四题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun()&#123;&#125;</span><br><span class="line">console.log(typeof fun); // function</span><br><span class="line">console.log(fun instanceof Function); // true</span><br><span class="line">console.log(fun instanceof Object); // true</span><br></pre></td></tr></table></figure>
+<p><img src="img/aiqianduan/WX20200318-181513@2x.png" alt="wx20200222-213601@2x.png"></p>
+<blockquote>
+<p>第五题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    a : 2,</span><br><span class="line">    getA : function()&#123;</span><br><span class="line">        return this.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var getA = obj.getA;</span><br><span class="line">getA(); // 规则1，this是window，所以this.a是1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第六题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a:1,</span><br><span class="line">    b:2,</span><br><span class="line">    c:[&#123;</span><br><span class="line">      a:3,</span><br><span class="line">      b:4,</span><br><span class="line">      c:fn</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">    alert(this.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var a=5;</span><br><span class="line">obj.c[0].c(); // obj.c[0]是&#123;a:3,b:4,c:fn&#125;这个对象！所以obj.c[0].c()适用规则2，而这个this代表的是这个对象，所以this.a是3！</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第七题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var number = 2;</span><br><span class="line">        var obj = &#123;</span><br><span class="line">            number : 4,</span><br><span class="line">            fn1: (function() &#123;</span><br><span class="line">                this.number *= 2;</span><br><span class="line">                number = number *2; // 局部变量number</span><br><span class="line">                var number = 3; // 此处声明提升，使局部变量number值为3</span><br><span class="line">                return function() &#123;</span><br><span class="line">                    this.number *= 2; // 此处this指的是全局的number，并且会把原来的2修改为4</span><br><span class="line">                    number *=3;</span><br><span class="line">                    alert(number);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)()</span><br><span class="line">        &#125;</span><br><span class="line">        alert(number); // 4</span><br><span class="line"></span><br><span class="line">        var fn1 = obj.fn1;</span><br><span class="line">        fn1(); // 9</span><br><span class="line">        obj.fn1(); // 27</span><br><span class="line">        alert(window.number); // 8</span><br><span class="line">        alert(obj.number); // 8</span><br></pre></td></tr></table></figure>
+<h3 id="三、算法类"><a href="#三、算法类" class="headerlink" title="三、算法类"></a>三、算法类</h3><ol>
+<li>数组的相关算法</li>
+</ol>
+<blockquote>
+<p>数组去重：最简单的方法就是ES6中的Set数据结构。Set说白了就是不能有重复项的数组。用数组来构建Set，数组会自动去重</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,1,1,1,2,2,2,2,3,3,3,3];</span><br><span class="line"></span><br><span class="line">const set = new Set(arr);</span><br><span class="line">console.log([...set]); // 三个.是ES6的强制结构的运算符，直接输出set的话是一个对象</span><br></pre></td></tr></table></figure>
+<p>传统方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,1,1,1,2,2,2,2,3,3,3,3];</span><br><span class="line">var _result = [];</span><br><span class="line">function uniq(arr)&#123;</span><br><span class="line">    for(var i = 0; i &lt; arr.lenght; i++)&#123;</span><br><span class="line">        if(!_result.includs(arr[i]))&#123; // includs用到的是===，即如果数组中有&quot;1&quot;也会被保留下来</span><br><span class="line">            _result.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">        return _result</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(uniq(arr));</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何看数组的时间复杂度：时间复杂度用o()来表示，n表示数组的长度。那么这个例子中的算法的时间复杂度即为o(n)，表示时间复杂度随着数组长度线性变化</p>
+</blockquote>
+<ol>
+<li>数组排序</li>
+</ol>
+<blockquote>
+<p>冒泡排序：5个球进行排序，需要比较4趟，共比较次数4+3+2+1=10次。也就是说，长度为n的数组进行冒泡，共需要比较n-1趟，共比较<img src="img/aiqianduan/WX20200318-181532@2x.png" alt="wx20200225-183922@2x.png">次</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// bubbleSort不是纯函数，不是pure的，因为我们改变了传入到它内部的参数的值</span><br><span class="line">function bubbleSort(arr)&#123;</span><br><span class="line">    for(let i =0; i&lt; arr.length - 1; i++)&#123;</span><br><span class="line">        for(let j = 0; j&lt;arr.length - 1 - i; j++)&#123;</span><br><span class="line">            if(arr[j] &gt; arr[j+1])&#123;</span><br><span class="line">                // 交换数字的位置，需要引入第三方变量做周转</span><br><span class="line">                var temp = arr[i];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">var arr = [7,3,5,9,10,56,33,6];</span><br><span class="line">console.log(bubbleSort(arr));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>纯函数写法：浅克隆</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function bubbleSort(arr)&#123;</span><br><span class="line">    // 先浅克隆数组</span><br><span class="line">    var _arr = [].concat(arr);</span><br><span class="line"></span><br><span class="line">    for(let i =0; i&lt; arr.length - 1; i++)&#123;</span><br><span class="line">        for(let j = 0; j&lt;_arr.length - 1 - i; j++)&#123;</span><br><span class="line">            if(_arr[j] &gt; _arr[j+1])&#123;</span><br><span class="line">                // 交换数字的位置，需要引入第三方变量做周转</span><br><span class="line">                var temp = _arr[i];</span><br><span class="line">                _arr[j] = _arr[j + 1];</span><br><span class="line">                _arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return _arr;</span><br><span class="line">&#125;</span><br><span class="line">const arr = [7,3,5,9,10,56,33,6];</span><br><span class="line">var result = bubbleSort(arr)</span><br><span class="line">console.log(arr); // 数组不变</span><br><span class="line">console.log(result);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>快速排序（二分法排序）思路：选择数组的第0项作为标杆，比他大的放一起，小的放一起，然后再用递归分别排两边的数组，直到顺序正确</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(arr)&#123;</span><br><span class="line">    // 停止递归的条件</span><br><span class="line">    if(arr.length &lt;=1)&#123;</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line">    // 标杆</span><br><span class="line">    const pivot = arr[0];</span><br><span class="line">    // 比标杆大的</span><br><span class="line">    var bigger = [];</span><br><span class="line">    // 比标杆小的</span><br><span class="line">    var smaller = [];</span><br><span class="line">    </span><br><span class="line">    // 遍历，区分大小</span><br><span class="line">    for(let i=1; i &lt; arr.length; i++)&#123;</span><br><span class="line">        if(arr[i] &gt;= pivot)&#123; // &gt;=时，i从1开始，&gt;时i从0开始</span><br><span class="line">            bigger.push(arr[i]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            smaller.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return quickSort(smaller).concat(pivot, quickSort(bigger)); // 运用递归，是两个数组完成排序，注意要有递归停止条件(最上)</span><br><span class="line">&#125;</span><br><span class="line">var arr = [56,332, 24,64,3,45,12,456,88,99,32];</span><br><span class="line">console.log(quickSort(arr));</span><br></pre></td></tr></table></figure>
+<p>冒泡排序的时间复杂度是o((n²-n)/2)，快速排序的时间复杂度是o(nlogn)，比冒泡排序快很多</p>
+<blockquote>
+<p>let和var的区别：let表示块级作用域，在for循环中有奇效，它可以自动创建闭包</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for(var i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    arr[i] = function()&#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">arr[5](); // 输出10，因为i是用var声明的全局变量，循环体走完后值为10</span><br><span class="line"></span><br><span class="line">// 如果想每次输出i的值，传统做法(ise)：</span><br><span class="line">for(var i = 0; i &lt; 10; i++)&#123;</span><br><span class="line">    function(i)&#123; // 此时i为局部变量</span><br><span class="line">        arr[i] = function()&#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 新办法(用let)：</span><br><span class="line">for(let i = 0; i &lt; 10; i++)&#123; // let创建了一个小的闭包，使i只在本次循环生效</span><br><span class="line">    arr[i] = function()&#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>递归：面试大致只有6种递归题型：</li>
+</ol>
+<ul>
+<li>阶乘(n!)</li>
+<li>数组扁平化</li>
+<li>深克隆</li>
+<li>数组的快速排序</li>
+<li>杨辉三角等数学模型的建立</li>
+<li>脑筋急转弯，比如不用while、for等输出1、2、3……100<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 数组扁平化</span><br><span class="line">var arr = [[1,2,3],[4,[[[[5,6],7,8]]],9],10];</span><br><span class="line">function flattenArray(arr)&#123;</span><br><span class="line">    var _arr = [];</span><br><span class="line">    // 每一项进行遍历，看看是常数还是数组</span><br><span class="line">    for(let i = 0; i &lt; arr.length; i++)&#123;</span><br><span class="line">        // 数组的识别用isArray，typeof结果是object</span><br><span class="line">        if(!Array.isArray(arr[i]))&#123;</span><br><span class="line">            _arr.push(arr[i]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            // 如果这项是数组，那么重复这次的遍历模式(递归)</span><br><span class="line">            _arr = _arr.concat(flattenArray(arr[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return _arr;</span><br><span class="line">&#125;</span><br><span class="line">console.log(flattenArray(arr));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>拓展功能：想都不要想，一定是用prototype</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 求数组最大值</span><br><span class="line">Array.prototype.max = function()&#123;</span><br><span class="line">    // return Math.max.apply(null, this);</span><br><span class="line">    return Math.max(...arr);</span><br><span class="line">&#125;</span><br><span class="line">var arr = [343,23,478,980];</span><br><span class="line">console.log(arr.max()); // 注意是arr.max()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数的柯里化：函数少穿一个实参就会返回另一个函数，这个函数虚位以待，等待你随时传入最后的参数！假设有一个函数功能是求传入四个参数的和，可如果只传入三个函数，则返回NaN(undefined加任何数都是NaN)，此时为避免这种情况，就需要让函数返回另一个把现有参数先加完，并随时准备接受剩余参数继续相加的函数，这个过程就叫做函数的柯里化(发明此种功能的人叫做柯里curry)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function curry(fn)&#123;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        // 备份实参</span><br><span class="line">        var args = arguments;</span><br><span class="line">        return function()&#123;</span><br><span class="line">            return fn(...args, ...arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fun(a,b,c,d)&#123;</span><br><span class="line">    return a+b+c+d;</span><br><span class="line">&#125;</span><br><span class="line">// 柯里化</span><br><span class="line">fun = curry(fun);</span><br><span class="line"></span><br><span class="line">var fn = fun(1,2);</span><br><span class="line">console.log(fn(3,4));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>深浅克隆：首先要区分基本类型值和引用类型值，如下例：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 基本类型值：在内存中拷贝了一份，所以源数据改变时它不跟着变</span><br><span class="line">var a = 3;</span><br><span class="line">var b = a;</span><br><span class="line"></span><br><span class="line">a++;</span><br><span class="line">console.log(b); // 3</span><br><span class="line"></span><br><span class="line">// 引用类型值：在内存中共用一片堆内存，所以源数据改变时它跟着变</span><br><span class="line">var a = [1,2,3,4];</span><br><span class="line">var b = a;</span><br><span class="line"></span><br><span class="line">a.push(5);</span><br><span class="line">console.log(b); // [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+<p>基本类型值：</p>
+<ul>
+<li>种类：number、string、boolean、undefined</li>
+<li>特点：做变量传值的时候，内存中会复制一份。在做==判断或===判断时，仅比较值是否相当<br><img src="img/aiqianduan/WX20200318-181548@2x.png" alt="wx20200306-095640@2x.png"><br>引用类型值：</li>
+<li>种类：function、object、array、regexp、null</li>
+<li>特点：做变量传值的时候，内存中不会复制。在做==判断或===判断时，要看是否是内存中的同一个对象。<br><img src="img/aiqianduan/WX20200318-181558@2x.png" alt="wx20200306-095835@2x.png"><br>所以有经典面试题<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[] == [] // false</span><br><span class="line">&#123;&#125; == &#123;&#125; // false</span><br><span class="line">[1] == [1] // false</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>那么如何复制一个数组(对象)呢？</p>
+<blockquote>
+<p>浅克隆：只表层克隆一层，如果数组的某项也是数组，这个内层数组还是内存中的同一对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,[55,66,77]];</span><br><span class="line">var _arr = [];</span><br><span class="line">for(let i = 0; i&lt;arr.length; i++)&#123;</span><br><span class="line">    _arr.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">console.log(_arr == arr); // false，克隆成功，现在arr和_arr已经是两个对象了</span><br><span class="line">console.log(_arr[4] == arr[4]); // true，但是它们的第四项内部数组还是同一个</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于const：定义常量时，值不能改！但定义对象的话，其属性值可以改</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123;</span><br><span class="line">    const ceshi = &#123;</span><br><span class="line">        name: &apos;a&apos;,</span><br><span class="line">        age: 1</span><br><span class="line">    &#125;</span><br><span class="line">    ceshi.name = &apos;b&apos;</span><br><span class="line">    return ceshi</span><br><span class="line">&#125;</span><br><span class="line">console.log(fn()) // b</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>补充一点关于arguments的知识</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function fn(a,b)&#123;</span><br><span class="line">    console.log(a === arguments[0]); // true</span><br><span class="line">    console.log(b === arguments[1]); // true</span><br><span class="line">    a = 123;</span><br><span class="line">    b = 456;</span><br><span class="line">    console.log(a === arguments[0]); // true</span><br><span class="line">    console.log(b === arguments[1]); // true</span><br><span class="line">&#125;</span><br><span class="line">fn(3,4);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>arguments表示实参类数组对象，它总是能跟着具名形参的变化而变化。当a、b重新赋值的时候，arguments[0]和arguments[1]也就同步更新 了。但是在严格模式下就不会这样：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fn(a,b)&#123;</span><br><span class="line">    &quot;use strict&quot;</span><br><span class="line">    console.log(a === arguments[0]); // true</span><br><span class="line">    console.log(b === arguments[1]); // true</span><br><span class="line">    a = 123;</span><br><span class="line">    b = 456;</span><br><span class="line">    console.log(a === arguments[0]); // false</span><br><span class="line">    console.log(b === arguments[1]); // false</span><br><span class="line">&#125;</span><br><span class="line">fn(3,4);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果函数有默认参数，那么默认参数不算arguments的length。你传入了几个实参，长度就是几。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn(a, b=3)&#123;</span><br><span class="line">    console.log(arguments.length);</span><br><span class="line">&#125;</span><br><span class="line">fn(333); // 答案是1，因为只传了一个参数</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同时，当参数有默认值时，改变a和b的值，不会对arguments造成影响，并且不能进入严格模式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fn(a, b=3)&#123;</span><br><span class="line">    console.log(arguments.length); // 1，因为只传了一个参数</span><br><span class="line">    console.log(a === arguments[0]); // true</span><br><span class="line">    console.log(b === arguments[1]); // false，因为arguments[1]是undefined</span><br><span class="line">    a = 123;</span><br><span class="line">    b = 456;</span><br><span class="line">    console.log(a === arguments[0]); // false，注意这里不会变</span><br><span class="line">    console.log(b === arguments[1]); // false，注意这里不会变</span><br><span class="line">&#125;</span><br><span class="line">fn(333);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    万俟逍
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="KevinBlack.github.io/a9840e73.html" title="JavaScript复习">KevinBlack.github.io/a9840e73.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/79c7d788.html" rel="next" title="Vue考点">
+                <i class="fa fa-chevron-left"></i> Vue考点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/8d969c4d.html" rel="prev" title="爱前端笔记">
+                爱前端笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avatar.jpg"
+                alt="万俟逍" />
+            
+              <p class="site-author-name" itemprop="name">万俟逍</p>
+              <p class="site-description motion-element" itemprop="description">涅槃之路，向死而生</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#复习"><span class="nav-number">1.</span> <span class="nav-text">复习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、call和apply"><span class="nav-number">1.1.</span> <span class="nav-text">一、call和apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、this"><span class="nav-number">1.2.</span> <span class="nav-text">二、this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、算法类"><span class="nav-number">1.3.</span> <span class="nav-text">三、算法类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">万俟逍</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
