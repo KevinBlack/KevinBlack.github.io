@@ -1,0 +1,212 @@
+{
+  "id": "1699697",
+  "name": "resume",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "357743",
+      "name": "阅读，读书,书",
+      "font_class": "1",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "1013095",
+      "name": "学位",
+      "font_class": "education",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "1103347",
+      "name": "手机",
+      "font_class": "tel",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "1149095",
+      "name": "美术",
+      "font_class": "meishu",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
+    },
+    {
+      "icon_id": "1160898",
+      "name": "social-css3-outline",
+      "font_class": "socialcss3outline",
+      "unicode": "e892",
+      "unicode_decimal": 59538
+    },
+    {
+      "icon_id": "1473537",
+      "name": "音乐",
+      "font_class": "yinyue",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "1703531",
+      "name": "邮件",
+      "font_class": "youjian",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "1985042",
+      "name": "体育",
+      "font_class": "tiyu",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "3876384",
+      "name": "react",
+      "font_class": "react",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "3876414",
+      "name": "jquery",
+      "font_class": "jquery",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "5186197",
+      "name": "巨蟹座",
+      "font_class": "juxiezuo",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "5220898",
+      "name": "蛋糕",
+      "font_class": "tubiao-",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "5634776",
+      "name": "node-js",
+      "font_class": "node-js",
+      "unicode": "f1fd",
+      "unicode_decimal": 61949
+    },
+    {
+      "icon_id": "5735228",
+      "name": "工程-14",
+      "font_class": "gongcheng-",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "5916406",
+      "name": "HTML",
+      "font_class": "HTML",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "5916416",
+      "name": "JS",
+      "font_class": "JS",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "6052200",
+      "name": "工具",
+      "font_class": "tool",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "6665569",
+      "name": "游戏",
+      "font_class": "airudiantubiaohuizhi-zhuanqu_youxi",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "9936854",
+      "name": "ADOBE FL",
+      "font_class": "ADOBEFL",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "9936859",
+      "name": "ADOBE FW",
+      "font_class": "ADOBEFW",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "9936860",
+      "name": "ADOBE DW",
+      "font_class": "ADOBEDW",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "9936863",
+      "name": "ADOBE PR",
+      "font_class": "ADOBEPR",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "9936864",
+      "name": "ADOBE  AI",
+      "font_class": "ADOBEAI",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "9936879",
+      "name": "ADOBE AE",
+      "font_class": "ADOBEAE",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "10918216",
+      "name": "vuejs-line",
+      "font_class": "vuejs-line",
+      "unicode": "e77c",
+      "unicode_decimal": 59260
+    },
+    {
+      "icon_id": "11372677",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e8b3",
+      "unicode_decimal": 59571
+    },
+    {
+      "icon_id": "11992284",
+      "name": "bootstrap",
+      "font_class": "bootstrap",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "11992963",
+      "name": "html5",
+      "font_class": "html",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "13519391",
+      "name": "eleme",
+      "font_class": "eleme",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    }
+  ]
+}
