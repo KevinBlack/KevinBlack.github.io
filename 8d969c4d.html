@@ -96,7 +96,7 @@
 <meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-174502@2x.png">
 <meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-174539@2x.png">
 <meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-174550@2x.png">
-<meta property="og:updated_time" content="2020-03-20T03:48:34.501Z">
+<meta property="og:updated_time" content="2020-03-20T04:21:36.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="爱前端笔记">
 <meta name="twitter:description" content="[toc] 目录canvas 概述：H5新增双闭合标签，它主要的功能是可以让我们写一些小游戏。 资料：API、手册一. canvas的基本使用1234567891011&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;    &amp;lt;title&amp;gt;Document&amp;lt;/title&amp;gt;    &amp;lt;style&amp;gt;">
@@ -617,12 +617,12 @@
 <p>待补充(两个大包)</p>
 <h4 id="11-Express-js框架："><a href="#11-Express-js框架：" class="headerlink" title="11. Express.js框架："></a>11. Express.js框架：</h4><blockquote>
 <p>解决了哪些问题</p>
+</blockquote>
 <ul>
 <li>路由不方便制作，尤其是正则表达式路由</li>
 <li>静态资源服务不方便</li>
 <li>页面呈递不方便，没有模板引擎</li>
 </ul>
-</blockquote>
 <blockquote>
 <p>官网：<a href="www.expressjs.com.cn">www.expressjs.com.cn</a></p>
 </blockquote>
@@ -630,12 +630,12 @@
 <p>基本使用方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&quot;express&quot;);</span><br><span class="line">var app = express();</span><br><span class="line">// 中间件(注意顺序)</span><br><span class="line">app.get(&quot;/&quot;, function()&#123;</span><br><span class="line">    res.send(&quot;我是首页&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">app.get(&quot;/music&quot;, function()&#123;</span><br><span class="line">    res.send(&quot;音乐频道&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">app.get(&quot;/news&quot;, function()&#123;</span><br><span class="line">    res.send(&quot;新闻频道&quot;);</span><br><span class="line">&#125;)</span><br><span class="line">app.get(&quot;/student/:xuehao&quot;, function()&#123;</span><br><span class="line">    if(/^[\d]&#123;6&#125;$/.test(req.params.xuehao))&#123;</span><br><span class="line">        res.send(&quot;学生频道，学号&quot; + req.params.xuehao);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        res.send(&quot;学号有误，应该是6位数字&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">app.get(&quot;/student/:123&quot;, function()&#123;</span><br><span class="line">    res.send(&quot;123是班长&quot; + req.params.xuehao);</span><br><span class="line">    // 这个中间件将不会被匹配到，因为上面匹配到了学号就不会再往下走了</span><br><span class="line">&#125;)</span><br><span class="line">// 静态化public文件夹，无论get还是post都能使用</span><br><span class="line">app.use(express.static(&quot;./public&quot;));</span><br><span class="line">// 将public文件夹中的东西映射到jingtai文件夹中(访问路径也变为/jingtai/xxx)</span><br><span class="line">app.use(&quot;./jingtai&quot;, express.static(&quot;./public&quot;));</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>中间件特点：</p>
+</blockquote>
 <ul>
 <li>输出使用res.send()而不是res.end()</li>
 <li>自动使用pathname与/news进行比较，也就是说会自动过滤掉querystring、hash等等</li>
 <li>可以用：来引导一个变量，此时特别方便做一个正则的路由，并用req.params.xxx获取</li>
 </ul>
-</blockquote>
 <blockquote>
 <p>需求：当访问 / 时，其实真正想访问的页面是public/haha.html</p>
 </blockquote>
