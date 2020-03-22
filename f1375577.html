@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[toc] 目录VUE报错1. vue提示模板错误==错误信息：==You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="各种报错">
+<meta property="og:url" content="KevinBlack.github.io/f1375577.html">
+<meta property="og:site_name" content="♠♥♣♦">
+<meta property="og:description" content="[toc] 目录VUE报错1. vue提示模板错误==错误信息：==You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-182153@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-182245@2x.png">
+<meta property="og:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-182347@2x.png">
+<meta property="og:updated_time" content="2020-03-22T06:40:08.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="各种报错">
+<meta name="twitter:description" content="[toc] 目录VUE报错1. vue提示模板错误==错误信息：==You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-">
+<meta name="twitter:image" content="KevinBlack.github.io/img/aiqianduan/WX20200318-182153@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="KevinBlack.github.io/f1375577.html"/>
+
+
+
+
+
+  <title>各种报错 | ♠♥♣♦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">♠♥♣♦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="KevinBlack.github.io/f1375577.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="万俟逍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="♠♥♣♦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">各种报错</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T00:00:00+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/" itemprop="url" rel="index">
+                    <span itemprop="name">前端知识</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识/踩坑/" itemprop="url" rel="index">
+                    <span itemprop="name">踩坑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,286
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[toc]</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h3 id="VUE报错"><a href="#VUE报错" class="headerlink" title="VUE报错"></a>VUE报错</h3><h4 id="1-vue提示模板错误"><a href="#1-vue提示模板错误" class="headerlink" title="1. vue提示模板错误"></a>1. vue提示模板错误</h4><p>==错误信息：==<br>You are using the runtime-only build of Vue where the template compiler is not available. Either pre-compile the templates into render functions, or use the compiler-included build.<br><strong>原因：</strong> vue默认配置的是runtime版本。   </p>
+<blockquote>
+<p>不同构建版本的解释说明</p>
+</blockquote>
+<p>在<b style="color:#65b687">NPM包的</b> <b style="color:#da702b">dist/</b> <b style="color:#65b687">目录下</b>，你会找到许多不同构建版本的 Vue.js。以下是它们之间差异的概述：<br>| |UMD|CommonJS|ES Module<br> —|:–:|:–:|:–:<br>完整版本(Full)|vue.js|vue.common.js|vue.esm.js|<br>只含有运行时版本(Runtime-only)|vue.runtime.js|    vue.runtime.common.js|vue.runtime.esm.js|<br>完整版本（生产环境）|vue.min.js|-|-|<br>只含有运行时版本（生产环境）|vue.runtime.min.js|-|-|<br>==解决办法：==<br><b style="color:#da702b">webpack.config.js</b> 添加如下配置  </p>
+<blockquote>
+<p>vue-cli3.0后好像配置文件不叫webpack.config.js这个名字了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">        vue: &apos;vue/dist/vue.js&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue/dist/vue.js&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>或者<br>提取vue在html文件中直接引用(这种方法不推荐)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><b style="color:#da702b">webpack.config.js</b> 添加如下配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">externals: &#123;</span><br><span class="line">  vue: &apos;Vue&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="2-在vue-cli里引入jQuery"><a href="#2-在vue-cli里引入jQuery" class="headerlink" title="2. 在vue-cli里引入jQuery"></a>2. 在vue-cli里引入jQuery</h4><p>1）安装jquery依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jquery  –save</span><br></pre></td></tr></table></figure></p>
+<p>2）修改两处webpack配置 <b style="color:#da702b">*注意vue-cli3.0以后不再有webpack.config.js这个文件，需要写在vue.config.js里</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var webpack = require(&apos;webpack&apos;)//第一步，请求webpack</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  lintOnSave: false,</span><br><span class="line">  configureWebpack: &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">      new webpack.ProvidePlugin(&#123;  //第二步，引入Jquery</span><br><span class="line">        $: &apos;jquery&apos;,</span><br><span class="line">        jQuery: &apos;jquery&apos;,</span><br><span class="line">        &apos;window.jQuery&apos;:&apos;jquery&apos;</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3）需要在那个页面用，直接引入即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import $ from ‘jquery’</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-vue监听window-onresize方法"><a href="#3-vue监听window-onresize方法" class="headerlink" title="3. vue监听window.onresize方法"></a>3. vue监听window.onresize方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div :style=&quot;&#123;width: `$&#123;screenWidth&#125;px`&#125;&quot;&gt;</span><br><span class="line">      &lt;router-view/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;App&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      screenWidth: document.body.clientWidth</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    const that = this</span><br><span class="line">    window.onresize = () =&gt; &#123;</span><br><span class="line">      return (() =&gt; &#123;</span><br><span class="line">        window.screenWidth = document.body.clientWidth</span><br><span class="line">        that.screenWidth = window.screenWidth</span><br><span class="line">      &#125;)()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    screenWidth (val) &#123;</span><br><span class="line">      this.screenWidth = val</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4-Vue项目刷新当前页"><a href="#4-Vue项目刷新当前页" class="headerlink" title="4. Vue项目刷新当前页"></a>4. Vue项目刷新当前页</h4><p><a href="https://blog.csdn.net/qq_16772725/article/details/80467492" target="_blank" rel="noopener">链接</a></p>
+<h3 id="NPM报错"><a href="#NPM报错" class="headerlink" title="NPM报错"></a>NPM报错</h3><h4 id="1-code-128"><a href="#1-code-128" class="headerlink" title="1. code 128"></a>1. code 128</h4><p>解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global url.&quot;https://&quot;.insteadOf git://</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-code-13"><a href="#2-code-13" class="headerlink" title="2. code 13"></a>2. code 13</h4><p>解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xxx...</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-npm-install-报错chromedriver-记录，错误信息如下："><a href="#3-npm-install-报错chromedriver-记录，错误信息如下：" class="headerlink" title="3. npm install 报错chromedriver 记录，错误信息如下："></a>3. npm install 报错chromedriver 记录，错误信息如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! chromedriver@2.34.1 install: `node install.js`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Failed at the chromedriver@2.34.1 install script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br></pre></td></tr></table></figure>
+<p>该问题是vue-cli脚手架的一个bug，解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver</span><br></pre></td></tr></table></figure></p>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><h4 id="1-项目运行时一直发http-localhost-8080-sockjs-node-info-t-1462183700002请求"><a href="#1-项目运行时一直发http-localhost-8080-sockjs-node-info-t-1462183700002请求" class="headerlink" title="1. 项目运行时一直发http://localhost:8080/sockjs-node/info?t=1462183700002请求"></a>1. 项目运行时一直发<a href="http://localhost:8080/sockjs-node/info?t=1462183700002请求" target="_blank" rel="noopener">http://localhost:8080/sockjs-node/info?t=1462183700002请求</a></h4><p>如图：<br><img src="img/aiqianduan/WX20200318-182153@2x.png" alt="wx20200314-151251@2x.png"><br>首先sockjs-node是一个JavaScript库，提供跨浏览器JavaScript的API，创建了一个低延迟，全双工的浏览器和web服务器之间通信通道。<br>如果你的项目没有用到sockjs,vuecli3 运行npm run serve 之后network里面一直调用一个接口:<br><a href="http://localhost:8080/sockjs-node/info?t=1556418283950" target="_blank" rel="noopener">http://localhost:8080/sockjs-node/info?t=1556418283950</a></p>
+<p>方案：从根源上关闭此调用</p>
+<p>1、node_modules/sockjs-client/dist/sockjs.js</p>
+<p>2、代码的1605行注释<br>// self.xhr.send(payload);<br>ps:可在代码开发完成后关闭，会同步关闭热加载</p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><h4 id="1-使用-gitkeep来追踪空的文件夹"><a href="#1-使用-gitkeep来追踪空的文件夹" class="headerlink" title="1. 使用.gitkeep来追踪空的文件夹"></a>1. 使用.gitkeep来追踪空的文件夹</h4><p>解决办法：<br>Git会忽略空的文件夹。如果你想版本控制包括空文件夹，根据惯例会在空文件夹下放置.gitkeep文件。其实对文件名没有特定的要求。一旦一个空文件夹下有文件后，这个文件夹就会在版本控制范围内。</p>
+<h4 id="2-当用git命令拉取最新代码时，有时会遇到如下的提示，-Found-a-swap-file-by-the-name-“-git-MERGE-MSG-swp”"><a href="#2-当用git命令拉取最新代码时，有时会遇到如下的提示，-Found-a-swap-file-by-the-name-“-git-MERGE-MSG-swp”" class="headerlink" title="2. 当用git命令拉取最新代码时，有时会遇到如下的提示， Found a swap file by the name “.git/.MERGE_MSG.swp”"></a>2. 当用git命令拉取最新代码时，有时会遇到如下的提示， Found a swap file by the name “.git/.MERGE_MSG.swp”</h4><p>在项目根目录（如/StudioProjects/demo/Leave）下，找到.git/.MERGE_MSG.swp这个文件删除即可。 注：mac 删除命令rm -rf .MERGE_MSG.swp</p>
+<h3 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h3><h4 id="1-ES6"><a href="#1-ES6" class="headerlink" title="1. ES6"></a>1. ES6</h4><p>使用es6可能导致安卓端真机调试时很多问题出现，还有其他未知问题；原因未知；</p>
+<h4 id="2-字母拼错"><a href="#2-字母拼错" class="headerlink" title="2. 字母拼错"></a>2. 字母拼错</h4><p>包括字母拼写错误，大小写没有注意；微信小程序中，有大量这样的代码示例，从中间冒出一个大写，比如支付中的appId</p>
+<h4 id="3-官方文档示例代码有误"><a href="#3-官方文档示例代码有误" class="headerlink" title="3. 官方文档示例代码有误"></a>3. 官方文档示例代码有误</h4><p>有时官方文档示例代码也会出现问题，比如大小写出错，或者其他缺少参数等问题；</p>
+<h4 id="4-https"><a href="#4-https" class="headerlink" title="4. https"></a>4. https</h4><p>这个坑目前遇到的人最多，首先说明一下，工具的这个设置，<br><img src="img/aiqianduan/WX20200318-182245@2x.png" alt="wx20200314-150320@2x.png"><br>，这个设置有一些独特的作用，让你可以让本地避开一些限制；但是这个设置对真机无效，所以假如存在https问题，是否勾选并影响；仍然需要按贴排查：<a href="http://www.wxapp-union.com/forum.php?mod=viewthread&amp;tid=648" target="_blank" rel="noopener">http://www.wxapp-union.com/forum.php?mod=viewthread&amp;tid=648</a></p>
+<h4 id="5-官方BUG"><a href="#5-官方BUG" class="headerlink" title="5. 官方BUG"></a>5. 官方BUG</h4><p>你遇到的问题可能是官方仍未解决的bug，具体可以参考官方文档<br><a href="http://www.wxapp-union.com/forum.php?mod=viewthread&amp;tid=1360&amp;highlight=%E9%9D%A2%E5%90%91%E6%96%B0%E6%89%8B" target="_blank" rel="noopener">面向新手系列《四》官方文档BUG，tip及QA提示一览</a>，以及最新的官方回答，目前有两个官方帮助，但是仅限于12月20号，更多更新，可以在本站搜索关键词“官方”或前往官方开发者社区查询；<a href="http://www.wxapp-union.com/forum.php?mod=viewthread&amp;tid=1353&amp;highlight=%E5%AE%98%E6%96%B9" target="_blank" rel="noopener">微信小程序官方帮助出来了，你最想吐槽的是什么坑？</a><br><a href="http://www.wxapp-union.com/forum.php?mod=viewthread&amp;tid=1507&amp;highlight=%E5%AE%98%E6%96%B9" target="_blank" rel="noopener">官方问答精选系列《一》提交审核时提供测试账密码</a></p>
+<h4 id="6-官方文档"><a href="#6-官方文档" class="headerlink" title="6. 官方文档"></a>6. 官方文档</h4><p>官方文档是解决问题的不二之选，建议在解决问题时，不断的看官方文档，并且仔细看，尽量从官方文档中找出解决方案；</p>
+<h4 id="7-调试工具"><a href="#7-调试工具" class="headerlink" title="7. 调试工具"></a>7. 调试工具</h4><p>官方开发者工具及手机端，都提供了调试工具，基本跟原本大家常用的调试工具相差无几，可用利用调试工具多做各种调试，以免排查问题；调试方法，新手可以搜索网上相关firebug教程或浏览器调试教程或调试教程；</p>
+<h4 id="8-重启大法"><a href="#8-重启大法" class="headerlink" title="8. 重启大法"></a>8. 重启大法</h4><p>有时候编辑器会出现一些莫名其妙的BUG，比如昨天还是好的，今天打开各种问题等等，可以考虑重新编译或多次重启工具或重启电脑；</p>
+<h4 id="9-新手跳坑"><a href="#9-新手跳坑" class="headerlink" title="9. 新手跳坑"></a>9. 新手跳坑</h4><p>我们为新手准备了很多<a href="http://www.wxapp-union.com/forum.php?mod=forumdisplay&amp;fid=2&amp;filter=typeid&amp;typeid=3" target="_blank" rel="noopener">常见问题</a></p>
+<h4 id="10-前人经验"><a href="#10-前人经验" class="headerlink" title="10. 前人经验"></a>10. 前人经验</h4><p>有很多人遇到了很多问题，你可以在版块的问答分类下看看<a href="http://www.wxapp-union.com/forum.php?mod=forumdisplay&amp;fid=2&amp;page=2&amp;filter=author&amp;orderby=dateline&amp;typeid=16" target="_blank" rel="noopener">其他人遇到的问题及如此解决的</a></p>
+<h4 id="11-无法登陆"><a href="#11-无法登陆" class="headerlink" title="11. 无法登陆"></a>11. 无法登陆</h4><p>参考@M-信念 同学的建议：可以稍微等等；当出现帐号登陆问题时，可以尝试使用他人微信号，或是咨询其他人是否也遇到了相同的情况，不要着急；</p>
+<h4 id="12-代理设置"><a href="#12-代理设置" class="headerlink" title="12. 代理设置"></a>12. 代理设置</h4><p>代理设置应该是一个隐藏比较深的坑，但是很多人被坑过，假如你的机器设置了代理，开发者工具可能会也跟着默认带来代理，然后会接踵而来很多登陆，空白等问题；<br><img src="img/aiqianduan/WX20200318-182347@2x.png" alt="wx20200314-150908@2x.png"></p>
+<h4 id="13-使用搜索"><a href="#13-使用搜索" class="headerlink" title="13. 使用搜索"></a>13. 使用搜索</h4><p>现在本站聚合了大量的微信小程序相关内容，可以考虑使用本站的搜索，来获取自己想找的东西或用于解决问题，搜索时，请使用主要关键词，或相近关键词进行搜索，而不要直接搜索一句话，比如你需要appid，你可以搜索“appid”，你遇到了登陆问题，应该搜索“登陆”，真机预览遇到了问题，可以搜索“真机”，遇到了上传问题，可以搜索“uploadfile”</p>
+<h4 id="14-微信版本问题"><a href="#14-微信版本问题" class="headerlink" title="14. 微信版本问题"></a>14. 微信版本问题</h4><p>伴随微信的版本更新，不同的微信版本之间可能会出现不同的未知BUG；</p>
+<h4 id="15-微信缓存"><a href="#15-微信缓存" class="headerlink" title="15. 微信缓存"></a>15. 微信缓存</h4><p>微信缓存会导致很多未知的bug，目前发现的有无法真机预览，以及跳出错误：需要清除应用缓存，或者使用第二部手机进行测试方可排除此问题；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On PageReady can not find XXXXXX, app service not ready</span><br></pre></td></tr></table></figure></p>
+<h4 id="16-使用了非官方提供的方法"><a href="#16-使用了非官方提供的方法" class="headerlink" title="16. 使用了非官方提供的方法"></a>16. 使用了非官方提供的方法</h4><p>使用了部分非官方提供的方法比如Object.assign，可能会导致未知的问题，建议优先使用官方组件来实现；</p>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><h4 id="1-使用brew-install-mongodb安装mongodb时提示：No-available-formula-with-the-name-“mongodb”。。。因为MongoDB不再开源了！所以之前网上安装的方法都不对了！"><a href="#1-使用brew-install-mongodb安装mongodb时提示：No-available-formula-with-the-name-“mongodb”。。。因为MongoDB不再开源了！所以之前网上安装的方法都不对了！" class="headerlink" title="1. 使用brew install mongodb安装mongodb时提示：No available formula with the name “mongodb”。。。因为MongoDB不再开源了！所以之前网上安装的方法都不对了！"></a>1. 使用brew install mongodb安装mongodb时提示：No available formula with the name “mongodb”。。。因为MongoDB不再开源了！所以之前网上安装的方法都不对了！</h4><p>官网解决步骤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 首先tap一个仓库</span><br><span class="line">	brew tap mongodb/brew</span><br><span class="line">// 安装社区版（商业版没研究～）</span><br><span class="line">	brew install mongodb-community@4.2</span><br><span class="line">// 后面的@4.2省略应该也行，默认安装最新版本（安装时最新4.2）</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-关于-data-db"><a href="#2-关于-data-db" class="headerlink" title="2. 关于/data/db"></a>2. 关于/data/db</h4><p>安装完MongoDB后，用mongod命令启动，此时会报错，因为没有数据库存放目录，必须创建一个。不知道为什么命令行一直失效，于是手动在/User/fu下面创建/data文件夹，再在其中创建/db文件夹，并用命令行启动MongoDB数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mongod --dbpath /Users/fu/data/db</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意一定要加sudo！否则启动会失败~</p>
+</blockquote>
+<p>然后打开一个新的终端窗口，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br></pre></td></tr></table></figure></p>
+<p>当看到“ &gt; ”时，说明成功进入mongo的REPL环境(Read-Eval-Print-Loop，读一句、执行一句、显示一句)，此时便可以利用命令行进行数据库操作了</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    万俟逍
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="KevinBlack.github.io/f1375577.html" title="各种报错">KevinBlack.github.io/f1375577.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/8d969c4d.html" rel="next" title="爱前端笔记">
+                <i class="fa fa-chevron-left"></i> 爱前端笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/9c303927.html" rel="prev" title="创意构想">
+                创意构想 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avatar.jpg"
+                alt="万俟逍" />
+            
+              <p class="site-author-name" itemprop="name">万俟逍</p>
+              <p class="site-description motion-element" itemprop="description">涅槃之路，向死而生</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VUE报错"><span class="nav-number">1.1.</span> <span class="nav-text">VUE报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-vue提示模板错误"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. vue提示模板错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在vue-cli里引入jQuery"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 在vue-cli里引入jQuery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-vue监听window-onresize方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. vue监听window.onresize方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Vue项目刷新当前页"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. Vue项目刷新当前页</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NPM报错"><span class="nav-number">1.2.</span> <span class="nav-text">NPM报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-code-128"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. code 128</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-code-13"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. code 13</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-npm-install-报错chromedriver-记录，错误信息如下："><span class="nav-number">1.2.3.</span> <span class="nav-text">3. npm install 报错chromedriver 记录，错误信息如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.3.</span> <span class="nav-text">JavaScript</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-项目运行时一直发http-localhost-8080-sockjs-node-info-t-1462183700002请求"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 项目运行时一直发http://localhost:8080/sockjs-node/info?t=1462183700002请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git"><span class="nav-number">1.4.</span> <span class="nav-text">git</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使用-gitkeep来追踪空的文件夹"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 使用.gitkeep来追踪空的文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-当用git命令拉取最新代码时，有时会遇到如下的提示，-Found-a-swap-file-by-the-name-“-git-MERGE-MSG-swp”"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 当用git命令拉取最新代码时，有时会遇到如下的提示， Found a swap file by the name “.git/.MERGE_MSG.swp”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序"><span class="nav-number">1.5.</span> <span class="nav-text">小程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ES6"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. ES6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-字母拼错"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 字母拼错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-官方文档示例代码有误"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. 官方文档示例代码有误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-https"><span class="nav-number">1.5.4.</span> <span class="nav-text">4. https</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-官方BUG"><span class="nav-number">1.5.5.</span> <span class="nav-text">5. 官方BUG</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-官方文档"><span class="nav-number">1.5.6.</span> <span class="nav-text">6. 官方文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-调试工具"><span class="nav-number">1.5.7.</span> <span class="nav-text">7. 调试工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-重启大法"><span class="nav-number">1.5.8.</span> <span class="nav-text">8. 重启大法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-新手跳坑"><span class="nav-number">1.5.9.</span> <span class="nav-text">9. 新手跳坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-前人经验"><span class="nav-number">1.5.10.</span> <span class="nav-text">10. 前人经验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-无法登陆"><span class="nav-number">1.5.11.</span> <span class="nav-text">11. 无法登陆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-代理设置"><span class="nav-number">1.5.12.</span> <span class="nav-text">12. 代理设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-使用搜索"><span class="nav-number">1.5.13.</span> <span class="nav-text">13. 使用搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-微信版本问题"><span class="nav-number">1.5.14.</span> <span class="nav-text">14. 微信版本问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-微信缓存"><span class="nav-number">1.5.15.</span> <span class="nav-text">15. 微信缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-使用了非官方提供的方法"><span class="nav-number">1.5.16.</span> <span class="nav-text">16. 使用了非官方提供的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB"><span class="nav-number">1.6.</span> <span class="nav-text">MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使用brew-install-mongodb安装mongodb时提示：No-available-formula-with-the-name-“mongodb”。。。因为MongoDB不再开源了！所以之前网上安装的方法都不对了！"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 使用brew install mongodb安装mongodb时提示：No available formula with the name “mongodb”。。。因为MongoDB不再开源了！所以之前网上安装的方法都不对了！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-关于-data-db"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 关于/data/db</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">万俟逍</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
