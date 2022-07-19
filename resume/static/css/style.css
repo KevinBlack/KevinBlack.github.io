@@ -1,25 +1,22 @@
-
-#container
-{
-height: 300px;
-width: 100%;
-overflow: hidden;
-position: relative;
-overflow-x: scroll;
+#container {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  overflow-x: scroll;
   margin-top: 30px;
   display: inline-block;
 }
 
-#thumbs
-{
-position: absolute;
-top: 0px;
-left: 0px;
-height: 100%;
-width: auto;
-overflow: hidden;
-white-space: nowrap;
-padding: 30px 100px;
+#thumbs {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 30px 100px;
 }
 
 .history-block {
@@ -30,11 +27,11 @@ padding: 30px 100px;
   border-right: 1px solid #fff;
   display: inline-block;
   font-family: 'roboto condensed', sans-serif;
-  font-size:60px;
+  font-size: 60px;
   font-weight: 100;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
-  box-shadow: 2px 5px 20px rgba(0,0,0,0.8);
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.8);
   transition: width 0.2s;
 }
 
@@ -45,50 +42,50 @@ padding: 30px 100px;
 .cover {
   width: 100%;
   height: 100%;
-  transition: background .5s;
-  background: rgba(0,0,0,0.8);
+  transition: background 0.5s;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .cover:hover {
   width: 100%;
   height: 100%;
-  transition: background .5s;
-  background: rgba(0,0,0,0.8);
+  transition: background 0.5s;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .year {
   position: absolute;
-    top: 0px;
-    font-size: 30px;
-  font-weight:500;
-    margin: 40px 30px;
+  top: 0px;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 40px 30px;
 }
 
 .title {
   position: absolute;
   display: block;
   width: 260px;
-    top: 60px;
-    font-size: 15px;
-    margin: 30px;
+  top: 60px;
+  font-size: 15px;
+  margin: 30px;
   white-space: normal;
   transition: width 0.2s;
 }
 
 .timeline {
-  display:none;
+  display: none;
   position: absolute;
   bottom: 80px;
-    font-size: 20px;
-    margin: 20px;
+  font-size: 20px;
+  margin: 20px;
   transition: display 0.8s;
 }
 
 .timeline ul {
   margin: 0;
-padding: 0;
-list-style-type: none;
-text-align: center;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
 }
 
 .timeline ul li {
@@ -96,6 +93,7 @@ text-align: center;
   font-size: 15px;
   font-weight: 100;
   padding: 0px 5px;
+  float: left;
 }
 
 .timeline ul li {
@@ -109,11 +107,11 @@ text-align: center;
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   content: '\f10c';
   position: absolute;
   top: 30px;
-  margin-left:10px;
+  margin-left: 10px;
   transition: all 0.5s;
 }
 
@@ -121,10 +119,10 @@ text-align: center;
   content: '';
   position: absolute;
   top: 40px;
-  margin-left:-10px;
+  margin-left: -10px;
   width: 36px;
-  height:2px;
-  border: 1px solid rgba(255,255,255,0.5);
+  height: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   transition: all 0.5s;
 }
 
@@ -132,7 +130,8 @@ text-align: center;
   font-size: 30px;
 }
 
-.timelineYear, .timelineYear:hover {
+.timelineYear,
+.timelineYear:hover {
   text-decoration: none;
   color: #fff;
   transition: all 0.8s;
@@ -144,51 +143,51 @@ text-align: center;
   font-size: 18px;
   transition: all 0.5s;
   top: 29px;
-  margin-left:9px
+  margin-left: 9px;
 }
 
 .timeline ul li:hover:after {
   content: '';
   position: absolute;
   top: 40px;
-  margin-left:-10px;
+  margin-left: -10px;
   width: 36px;
-  height:2px;
+  height: 2px;
   border: 1px solid #fff;
   transition: all 0.5s;
 }
 
 .timeline ul li:hover .timelineYear {
   position: static;
-  top:-10px;
+  top: -10px;
 }
 
 .bg-66 {
   background: url('../images/yybs.jpeg');
-  background-size:cover;
+  background-size: cover;
 }
 
 .bg-76 {
   background: url('../images/hunter.jpeg');
-  background-size:cover;
+  background-size: cover;
 }
 
 .bg-86 {
   background: url('../images/hyrz.jpeg');
-  background-size:cover;
+  background-size: cover;
 }
 
 .bg-96 {
   background: url('../images/ss.jpg');
-  background-size:cover;
+  background-size: cover;
 }
 
 .bg-06 {
   background: url('../images/hzw.jpg');
-  background-size:cover;
+  background-size: cover;
 }
 
 .bg-16 {
   background: url('../images/npcs.jpeg');
-  background-size:cover;
+  background-size: cover;
 }

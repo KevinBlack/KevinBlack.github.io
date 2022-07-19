@@ -11,7 +11,7 @@ html,
 body {
   color: #7e8d95;
   background: #fff;
-  font: 12px/22px Verdana, Arial, sans-serif, "Times New Roman";
+  font: 12px/22px Verdana, Arial, sans-serif, 'Times New Roman';
   width: 100%;
   padding-bottom: 20px;
 }
@@ -43,11 +43,11 @@ img {
 a,
 a:link,
 a:visited {
-  color: #000;
+  color: #666;
   text-decoration: none;
 }
 a:hover {
-  color: #000;
+  color: #fff;
   text-decoration: underline;
 }
 textarea,
